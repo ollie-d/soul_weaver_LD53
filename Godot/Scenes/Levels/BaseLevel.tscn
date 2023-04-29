@@ -1,98 +1,183 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/Board.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Tile.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/PathFinder.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Soul.tscn" type="PackedScene" id=4]
 
 [node name="Level" type="Node2D"]
 
 [node name="Board" parent="." instance=ExtResource( 1 )]
+script = ExtResource( 3 )
 
 [node name="Start" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 513, 117 )
 
 [node name="R1_00" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 460, 208 )
+path_90 = false
+path_270 = false
+path_330 = false
 
 [node name="R1_01" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 566, 208 )
+path_30 = false
+path_150 = false
 
 [node name="R2_00" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 407, 299 )
+path_150 = false
+path_210 = false
+path_270 = false
+path_330 = false
 
 [node name="R2_01" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 513, 299 )
+path_30 = false
+path_90 = false
+path_150 = false
+path_330 = false
 
 [node name="R2_02" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 619, 299 )
+path_90 = false
+path_150 = false
+path_270 = false
+path_330 = false
 
 [node name="R3_00" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 354, 390 )
+path_90 = false
+path_150 = false
+path_210 = false
+path_330 = false
 
 [node name="R3_01" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 460, 390 )
+path_150 = false
+path_270 = false
+path_330 = false
 
 [node name="R3_02" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 566, 390 )
+path_90 = false
+path_210 = false
+path_270 = false
+path_330 = false
 
 [node name="R3_03" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 671, 390 )
+position = Vector2( 672, 390 )
+path_150 = false
+path_210 = false
+path_330 = false
 
 [node name="R4_00" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 301, 481 )
+path_30 = false
+path_150 = false
+path_270 = false
 
 [node name="R4_01" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 407, 481 )
+path_90 = false
+path_210 = false
+path_330 = false
 
 [node name="R4_02" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 513, 481 )
 
 [node name="R4_03" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 619, 481 )
+path_30 = false
+path_330 = false
 
 [node name="R4_04" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 725, 481 )
+path_30 = false
+path_210 = false
 
 [node name="R5_00" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 354, 572 )
+path_30 = false
+path_150 = false
+path_270 = false
+path_330 = false
 
 [node name="R5_01" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 460, 572 )
+path_30 = false
+path_90 = false
+path_150 = false
+path_270 = false
 
 [node name="R5_02" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 566, 572 )
+path_30 = false
+path_90 = false
+path_210 = false
+path_270 = false
 
 [node name="R5_03" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 672, 572 )
+path_210 = false
+path_330 = false
 
 [node name="R6_00" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 301, 663 )
 
 [node name="R6_01" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 407, 663 )
+path_150 = false
+path_210 = false
+path_270 = false
 
 [node name="R6_02" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 513, 663 )
+path_30 = false
+path_90 = false
+path_210 = false
+path_330 = false
 
 [node name="R6_03" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 619, 663 )
+path_90 = false
+path_210 = false
 
 [node name="R6_04" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 725, 663 )
+path_90 = false
+path_210 = false
+path_330 = false
 
 [node name="R7_00" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 354, 754 )
+path_30 = false
+path_90 = false
 
 [node name="R7_01" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 460, 754 )
+path_30 = false
+path_90 = false
+path_210 = false
+path_330 = false
 
 [node name="R7_02" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 566, 754 )
+path_30 = false
+path_210 = false
 
 [node name="R7_03" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 672, 754 )
+path_30 = false
+path_90 = false
+path_150 = false
 
 [node name="Enemy_Win" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 407, 845 )
 
 [node name="Player_Win" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 619, 845 )
+
+[node name="Soul" parent="Board" instance=ExtResource( 4 )]
+position = Vector2( 513, 117 )
+scale = Vector2( 0.4, 0.4 )

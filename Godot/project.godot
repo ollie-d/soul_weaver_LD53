@@ -10,8 +10,8 @@ config_version=4
 
 [application]
 
-config/name="Godot"
-run/main_scene="res://Scenes/Board.tscn"
+config/name="Soul Weaver"
+run/main_scene="res://Scenes/Levels/BaseLevel.tscn"
 config/icon="res://icon.png"
 
 [display]

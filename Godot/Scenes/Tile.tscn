@@ -32,9 +32,9 @@ shape = SubResource( 1 )
 
 [node name="Path_90" type="ColorRect" parent="Hex"]
 margin_left = 52.0
-margin_top = -8.0
-margin_right = 67.0
-margin_bottom = 39.0
+margin_top = -7.0
+margin_right = 66.0
+margin_bottom = 40.0
 rect_rotation = 90.0
 color = Color( 1, 0.937255, 0.00784314, 1 )
 
@@ -110,3 +110,5 @@ texture = ExtResource( 1 )
 [node name="Collision" type="CollisionShape2D" parent="InnerHex/Area"]
 position = Vector2( 2.73205, 0.732052 )
 shape = SubResource( 2 )
+
+[connection signal="body_entered" from="Hex/Path_30/Area" to="." method="_area_30_enter"]

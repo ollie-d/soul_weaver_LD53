@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/Board.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Tile.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/PathFinder.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Soul.tscn" type="PackedScene" id=4]
+
+[node name="Level" type="Node2D"]
+
+[node name="Board" parent="." instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+
+[node name="Start" parent="Board" instance=ExtResource( 2 )]
+position = Vector2( 513, 117 )
+
+[node name="R1_00" parent="Board" instance=ExtResource( 2 )]
+position = Vector2( 460, 208 )
+path_90 = false
+path_270 = false
+path_330 = false
+
+[node name="R1_02" parent="Board" instance=ExtResource( 2 )]
+position = Vector2( 407, 299 )
+path_30 = false
+path_90 = false
+path_150 = false
+path_270 = false
+path_330 = false
+
+[node name="R1_03" parent="Board" instance=ExtResource( 2 )]
+position = Vector2( 513, 299 )
+path_30 = false
+path_90 = false
+path_150 = false
+path_270 = false
+path_330 = false
+
+[node name="R1_01" parent="Board" instance=ExtResource( 2 )]
+position = Vector2( 566, 208 )
+path_30 = false
+path_150 = false
+
+[node name="Enemy_Win" parent="Board" instance=ExtResource( 2 )]
+position = Vector2( 407, 845 )
+
+[node name="Player_Win" parent="Board" instance=ExtResource( 2 )]
+position = Vector2( 619, 845 )
+
+[node name="Soul" parent="Board" instance=ExtResource( 4 )]
+position = Vector2( 513, 117 )
+scale = Vector2( 0.4, 0.4 )

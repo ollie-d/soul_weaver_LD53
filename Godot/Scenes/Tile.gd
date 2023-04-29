@@ -20,8 +20,13 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _physics_process(delta):
+	for path in $Hex.get_children():
+		for area in path.get_child(0).get_overlapping_areas():
+			if "Path" in str(area.get_parent()):
+				path.modulate = Color(1, 0, 0)
+			else:
+				path.modulate = Color(1, 1, 1)
 
 func disable_enable(angle, b):
 	var path = ("Hex/Path_%s")
@@ -32,12 +37,20 @@ func disable_enable(angle, b):
 		node.set_process(true)
 		node.set_physics_process(true)
 		node.set_process_input(true)
+		node.get_child(0).get_child(0).disabled = false
+		node.get_child(0).set_process(true)
+		node.get_child(0).set_physics_process(true)
+		node.get_child(0).set_process_input(true)
 	else:
 		node.visible = false
 		node.set_process(false)
 		node.set_physics_process(false)
 		node.set_process_input(false)
-		
+		node.get_child(0).get_child(0).disabled = true
+		node.get_child(0).set_process(false)
+		node.get_child(0).set_physics_process(false)
+		node.get_child(0).set_process_input(false)
+
 
 func disable_enable_30(b):
 	path_30 = b
