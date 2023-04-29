@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Path.gd" type="Script" id=1]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 6.4282
+height = 9.80384
+
+[node name="Path" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Path" type="ColorRect" parent="."]
+margin_left = -8.0
+margin_top = -47.0
+margin_right = 7.0
+color = Color( 1, 0.937255, 0.00784314, 1 )
+
+[node name="Area" type="Area2D" parent="Path"]
+
+[node name="Collision" type="CollisionShape2D" parent="Path/Area"]
+position = Vector2( 7.9282, -2.26795 )
+shape = SubResource( 1 )

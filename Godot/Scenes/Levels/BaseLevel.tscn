@@ -12,17 +12,22 @@ script = ExtResource( 3 )
 
 [node name="Start" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 513, 117 )
+tile_type = "Start"
 
 [node name="R1_00" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 460, 208 )
 path_90 = false
 path_270 = false
 path_330 = false
+tile_type = "Neutral"
+layer = 1
 
 [node name="R1_01" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 566, 208 )
 path_30 = false
 path_150 = false
+tile_type = "Neutral"
+layer = 1
 
 [node name="R2_00" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 407, 299 )
@@ -30,6 +35,8 @@ path_150 = false
 path_210 = false
 path_270 = false
 path_330 = false
+tile_type = "Neutral"
+layer = 2
 
 [node name="R2_01" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 513, 299 )
@@ -37,6 +44,9 @@ path_30 = false
 path_90 = false
 path_150 = false
 path_330 = false
+tile_type = "Neutral"
+layer = 2
+astar_weight = 0.95
 
 [node name="R2_02" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 619, 299 )
@@ -44,6 +54,8 @@ path_90 = false
 path_150 = false
 path_270 = false
 path_330 = false
+tile_type = "Neutral"
+layer = 2
 
 [node name="R3_00" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 354, 390 )
@@ -51,12 +63,17 @@ path_90 = false
 path_150 = false
 path_210 = false
 path_330 = false
+tile_type = "Neutral"
+layer = 3
 
 [node name="R3_01" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 460, 390 )
 path_150 = false
 path_270 = false
 path_330 = false
+tile_type = "Neutral"
+layer = 3
+astar_weight = 0.95
 
 [node name="R3_02" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 566, 390 )
@@ -64,37 +81,55 @@ path_90 = false
 path_210 = false
 path_270 = false
 path_330 = false
+tile_type = "Neutral"
+layer = 3
+astar_weight = 0.95
 
 [node name="R3_03" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 672, 390 )
 path_150 = false
 path_210 = false
 path_330 = false
+tile_type = "Neutral"
+layer = 3
 
 [node name="R4_00" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 301, 481 )
 path_30 = false
 path_150 = false
 path_270 = false
+tile_type = "Neutral"
+layer = 4
 
 [node name="R4_01" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 407, 481 )
 path_90 = false
 path_210 = false
 path_330 = false
+tile_type = "Neutral"
+layer = 4
+astar_weight = 0.99
 
 [node name="R4_02" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 513, 481 )
+tile_type = "Neutral"
+layer = 4
+astar_weight = 0.95
 
 [node name="R4_03" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 619, 481 )
 path_30 = false
 path_330 = false
+tile_type = "Neutral"
+layer = 4
+astar_weight = 0.99
 
 [node name="R4_04" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 725, 481 )
 path_30 = false
 path_210 = false
+tile_type = "Neutral"
+layer = 4
 
 [node name="R5_00" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 354, 572 )
@@ -102,6 +137,8 @@ path_30 = false
 path_150 = false
 path_270 = false
 path_330 = false
+tile_type = "Neutral"
+layer = 5
 
 [node name="R5_01" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 460, 572 )
@@ -109,6 +146,9 @@ path_30 = false
 path_90 = false
 path_150 = false
 path_270 = false
+tile_type = "Neutral"
+layer = 5
+astar_weight = 0.95
 
 [node name="R5_02" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 566, 572 )
@@ -116,20 +156,30 @@ path_30 = false
 path_90 = false
 path_210 = false
 path_270 = false
+tile_type = "Neutral"
+layer = 5
+astar_weight = 0.95
 
 [node name="R5_03" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 672, 572 )
 path_210 = false
 path_330 = false
+tile_type = "Neutral"
+layer = 5
 
 [node name="R6_00" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 301, 663 )
+tile_type = "Neutral"
+layer = 6
 
 [node name="R6_01" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 407, 663 )
 path_150 = false
 path_210 = false
 path_270 = false
+tile_type = "Neutral"
+layer = 6
+astar_weight = 0.99
 
 [node name="R6_02" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 513, 663 )
@@ -137,22 +187,32 @@ path_30 = false
 path_90 = false
 path_210 = false
 path_330 = false
+tile_type = "Neutral"
+layer = 6
+astar_weight = 0.95
 
 [node name="R6_03" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 619, 663 )
 path_90 = false
 path_210 = false
+tile_type = "Neutral"
+layer = 6
+astar_weight = 0.99
 
 [node name="R6_04" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 725, 663 )
 path_90 = false
 path_210 = false
 path_330 = false
+tile_type = "Neutral"
+layer = 6
 
 [node name="R7_00" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 354, 754 )
 path_30 = false
 path_90 = false
+tile_type = "Neutral"
+layer = 7
 
 [node name="R7_01" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 460, 754 )
@@ -160,24 +220,48 @@ path_30 = false
 path_90 = false
 path_210 = false
 path_330 = false
+tile_type = "Neutral"
+layer = 7
+astar_weight = 0.95
 
 [node name="R7_02" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 566, 754 )
 path_30 = false
 path_210 = false
+tile_type = "Neutral"
+layer = 7
+astar_weight = 0.95
 
 [node name="R7_03" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 672, 754 )
 path_30 = false
 path_90 = false
 path_150 = false
+path_270 = false
+tile_type = "Neutral"
+layer = 7
 
 [node name="Enemy_Win" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 407, 845 )
+tile_type = "Enemy_End"
+layer = 8
+astar_weight = 0.0
 
 [node name="Player_Win" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 619, 845 )
+tile_type = "Player_End"
+layer = 8
+astar_weight = 0.0
 
 [node name="Soul" parent="Board" instance=ExtResource( 4 )]
 position = Vector2( 513, 117 )
 scale = Vector2( 0.4, 0.4 )
+
+[node name="Button" type="Button" parent="Board"]
+margin_left = 428.0
+margin_top = 925.0
+margin_right = 579.0
+margin_bottom = 1008.0
+text = "Compute Path"
+
+[connection signal="pressed" from="Board/Button" to="Board" method="_on_Button_pressed"]

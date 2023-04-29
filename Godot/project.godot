@@ -14,6 +14,10 @@ config/name="Soul Weaver"
 run/main_scene="res://Scenes/Levels/BaseLevel.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+global_astar="*res://Scenes/Globals/global_astar.gd"
+
 [display]
 
 window/size/height=1024
