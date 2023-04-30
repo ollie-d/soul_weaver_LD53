@@ -477,6 +477,9 @@ text = "Check"
 [node name="Sound" type="AudioStreamPlayer" parent="Board"]
 stream = ExtResource( 25 )
 
+[node name="Timer" type="Timer" parent="Board"]
+one_shot = true
+
 [node name="Label" type="Label" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5

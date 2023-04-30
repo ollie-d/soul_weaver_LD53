@@ -21,7 +21,8 @@ func _ready():
 	
 	globals.current_round = 0
 	globals.turn = "Player"
-	$Board/Button.disabled = false
+	#$Board/Button.disabled = false
+	$Board/WeirdButton.disabled = false
 	$PlayerName.modulate = Color(1, 1, 1)
 	$PlayerRotations.modulate = Color(1, 1, 1)
 	$EnemyName.modulate = Color(0.5, 0.5, 0.5)
@@ -97,7 +98,8 @@ func finish_turn():
 	# Check what player can do based on turn
 	if globals.turn == "Player":
 		globals.turn = "Enemy"
-		$Board/Button.disabled = true
+		#$Board/Button.disabled = true
+		$Board/WeirdButton.disabled = true
 		$PlayerName.modulate = Color(0.5, 0.5, 0.5)
 		$PlayerRotations.modulate = Color(0.5, 0.5, 0.5)
 		$EnemyName.modulate = Color(1, 1, 1)
@@ -106,7 +108,8 @@ func finish_turn():
 		enemy_turn()
 	elif globals.turn == "Enemy":
 		globals.turn = "Player"
-		$Board/Button.disabled = false
+		#$Board/Button.disabled = false
+		$Board/WeirdButton.disabled = false
 		$PlayerName.modulate = Color(1, 1, 1)
 		$PlayerRotations.modulate = Color(1, 1, 1)
 		$EnemyName.modulate = Color(0.5, 0.5, 0.5)

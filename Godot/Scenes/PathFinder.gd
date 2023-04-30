@@ -137,14 +137,15 @@ func next_round():
 		
 		# Check if the end cell is an end condition
 		if global_astar.astar_dict.keys()[path[1]] == "Player_Win":
-			# Call next level OR game win function
-			print("Gz you win")
-			global_astar.player_won = true
-			emit_signal("victory")
+			$Timer.wait_time = 3.0
+			$Timer.start()
+			yield($Timer, "timeout")
+			victory()
 		elif global_astar.astar_dict.keys()[path[1]] == "Enemy_Win":
-			# Call defeat
-			print("Oof, you lose")
-			emit_signal("defeat")
+			$Timer.wait_time = 3.0
+			$Timer.start()
+			yield($Timer, "timeout")
+			defeat()
 			
 	# Clear all hex's rotations
 	for child in self.get_children():
@@ -159,3 +160,42 @@ func _on_Button_pressed():
 
 func _on_Level_next_round():
 	next_round()
+
+
+func victory():
+	# Call next level OR game win function
+	#layer_end()
+	print("Gz you win")
+	global_astar.player_won = true
+	emit_signal("victory")
+
+
+func defeat():
+	#layer_end()
+	# Call defeat
+	print("Oof, you lose")
+	emit_signal("defeat")
+
+
+#func layer_end():
+##	# This is called on good or bad end
+##	$Timer.wait_time = 3.0
+##	$Timer.start()
+##	yield($Timer, "timeout")
+#
+#	# Let's make everything except the current tile and soul disappear
+#	# and then end.
+#	var hexes_to_dim = []
+#	for child in self.get_children():
+#		var id = child.get_name()
+#		if ("_" in id) or ("Start" in id):
+#			if id != global_astar.end_point:
+#				hexes_to_dim.append(id)
+#
+#	print(hexes_to_dim)
+#
+#	# Do a sketchy loop here to dim
+#	for i in range(10):
+#		print(i)
+#		for hex in hexes_to_dim:
+#			self.find_node(hex).modulate.a -= 0.1
