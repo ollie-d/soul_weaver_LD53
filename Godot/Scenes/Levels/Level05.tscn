@@ -460,6 +460,7 @@ position = Vector2( 513, 117 )
 scale = Vector2( 0.4, 0.4 )
 
 [node name="Button3" type="Button" parent="Board"]
+visible = false
 margin_left = 255.0
 margin_top = 155.0
 margin_right = 363.0
@@ -511,12 +512,14 @@ stream = ExtResource( 25 )
 one_shot = true
 
 [node name="Button2" type="Button" parent="Board"]
+visible = false
 margin_left = 292.0
 margin_top = 81.0
 margin_right = 395.0
 margin_bottom = 140.0
 
 [node name="Button4" type="Button" parent="Board"]
+visible = false
 margin_left = 264.0
 margin_top = 258.0
 margin_right = 308.0

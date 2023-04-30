@@ -481,12 +481,14 @@ stream = ExtResource( 25 )
 one_shot = true
 
 [node name="Button2" type="Button" parent="Board"]
+visible = false
 margin_left = 271.0
 margin_top = 73.0
 margin_right = 415.0
 margin_bottom = 128.0
 
 [node name="Button3" type="Button" parent="Board"]
+visible = false
 margin_left = 637.0
 margin_top = 62.0
 margin_right = 742.0
@@ -494,6 +496,7 @@ margin_bottom = 130.0
 text = "Move near win"
 
 [node name="Button4" type="Button" parent="Board"]
+visible = false
 margin_left = 291.0
 margin_top = 152.0
 margin_right = 354.0

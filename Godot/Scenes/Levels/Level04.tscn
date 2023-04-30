@@ -473,12 +473,14 @@ stream = ExtResource( 25 )
 one_shot = true
 
 [node name="Button2" type="Button" parent="Board"]
+visible = false
 margin_left = 292.0
 margin_top = 81.0
 margin_right = 395.0
 margin_bottom = 140.0
 
 [node name="Button4" type="Button" parent="Board"]
+visible = false
 margin_left = 281.0
 margin_top = 172.0
 margin_right = 352.0
