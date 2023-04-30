@@ -45,15 +45,20 @@ func _physics_process(delt1a):
 			$Hex.modulate = Color(0.6, 0.6, 0.6)
 		else:
 			$Hex.modulate = Color(0.2, 0.2, 0.2)
+	
 	for path in $Hex.get_children():
-		for area in path.get_child(0).get_child(0).get_overlapping_areas():
-			if "Path" in str(area.get_parent()):
-				is_connected = true
-				if path.state != "optimal":
-					path.state = "connected"
-			else:
-				path.state = "unconnected"
-				is_connected = false
+		var areas = path.get_child(0).get_child(0).get_overlapping_areas()
+		if len(areas) > 0:
+			for area in path.get_child(0).get_child(0).get_overlapping_areas():
+				if "Path" in str(area.get_parent()):
+					is_connected = true
+					if path.state != "optimal":
+						path.state = "connected"
+		else:
+			if "Path" in path.get_name():
+				if not Engine.is_editor_hint():
+					path.state = "unconnected"
+					is_connected = false
 
 
 func disable_enable(angle, b):
@@ -115,3 +120,11 @@ func turn_off():
 	is_tile_on = false
 	for child in $Hex.get_children():
 		child.parent_hex_on = false
+
+
+func _on_Arrow_Left_pressed():
+	$Hex.rotation_degrees -= 60
+
+
+func _on_Arrow_Right_pressed():
+	$Hex.rotation_degrees += 60

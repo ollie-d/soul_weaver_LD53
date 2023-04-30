@@ -12,39 +12,19 @@ script = ExtResource( 3 )
 
 [node name="Start" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 513, 117 )
+path_90 = false
+path_150 = false
+path_210 = false
+path_270 = false
+path_330 = false
 
 [node name="R1_00" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 460, 208 )
 path_90 = false
+path_150 = false
+path_210 = false
 path_270 = false
 path_330 = false
-
-[node name="R1_02" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 407, 299 )
-path_30 = false
-path_90 = false
-path_150 = false
-path_270 = false
-path_330 = false
-
-[node name="R1_03" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 513, 299 )
-path_30 = false
-path_90 = false
-path_150 = false
-path_270 = false
-path_330 = false
-
-[node name="R1_01" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 566, 208 )
-path_30 = false
-path_150 = false
-
-[node name="Enemy_Win" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 407, 845 )
-
-[node name="Player_Win" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 619, 845 )
 
 [node name="Soul" parent="Board" instance=ExtResource( 4 )]
 position = Vector2( 513, 117 )

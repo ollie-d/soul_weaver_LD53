@@ -12,6 +12,11 @@ script = ExtResource( 3 )
 
 [node name="Start" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 513, 117 )
+path_90 = false
+path_150 = false
+path_210 = false
+path_270 = false
+path_330 = false
 tile_type = "Start"
 
 [node name="R1_00" parent="Board" instance=ExtResource( 2 )]
@@ -249,6 +254,8 @@ astar_weight = 0.0
 
 [node name="Player_Win" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 619, 845 )
+path_30 = false
+path_330 = false
 tile_type = "Player_End"
 layer = 8
 astar_weight = 0.0

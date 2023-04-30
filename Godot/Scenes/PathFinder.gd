@@ -53,18 +53,41 @@ func _on_Button_pressed():
 		if path.state == "connected":
 			path.propagate()
 			
-	# Get best AStar path
-	var _path = global_astar.astar.get_id_path(global_astar.astar_dict[curr_tile.tile_name], global_astar.astar_dict["Player_Win"])
+	# Get best AStar paths
+	var _path_player = global_astar.astar.get_id_path(global_astar.astar_dict[curr_tile.tile_name], global_astar.astar_dict["Player_Win"])
+	var _path_enemy = global_astar.astar.get_id_path(global_astar.astar_dict[curr_tile.tile_name], global_astar.astar_dict["Enemy_Win"])
 	
 	# Store tile names in a path list
-	var path = []
-	for _i in _path:
-		path.append(_i)
+	var path_player = []
+	for _i in _path_player:
+		path_player.append(_i)
+		
+	var path_enemy = []
+	for _i in _path_enemy:
+		path_enemy.append(_i)
+		
+	# Check if either path goes to the end
+	print("Player path goes  to win:" + str(global_astar.astar_dict["Player_Win"] in path_player))
+	print("Enemy path goes  to win:" + str(global_astar.astar_dict["Enemy_Win"] in path_enemy))
+	
+	var path = path_player
+	var player_win_connected = global_astar.astar_dict["Player_Win"] in path_player
+	var enemy_win_connected = global_astar.astar_dict["Enemy_Win"] in path_enemy
+	
+	if player_win_connected and enemy_win_connected:
+		# If enemy path is shorter, set path to that
+		if len(path_enemy) < len(path_player):
+			path = path_enemy
+	elif enemy_win_connected and not player_win_connected:
+		# If player win is not connected, choose enemy path if it is
+		path = path_enemy
+	else:
+		# If neither goes to the end, choose the shortest path
+		if len(path_enemy) < len(path_player):
+			path = path_enemy
 	
 	for item in global_astar.astar_dict.keys():
 		if global_astar.astar_dict[item] in path:
-			print(item)
-			print(global_astar.astar.get_point_weight_scale(global_astar.astar_dict[item]))
 			self.get_node(item).optimal_tile = true
 	
 	pass # Replace with function body.
