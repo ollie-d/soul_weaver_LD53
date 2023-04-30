@@ -4,6 +4,8 @@ extends Node2D
 var line_offset = Vector2(-104, -50)
 
 func _ready():
+	# Make sure soul is at the top
+	$Board/Soul.z_index = 100
 	for child in $Board.get_children():
 		var id = child.get_name()
 		if ("_" in id) or ("Start" in id):
@@ -38,11 +40,11 @@ func _on_Timer_timeout():
 	$Line2D.clear_points()
 	
 	if path_type == "Normal":
-		$Line2D.modulate = Color(1.0, 1.0, 0.0)
+		$Line2D.modulate = Color(1.0, 1.0, 1.0, 0.5)
 	elif path_type == "Enemy":
-		$Line2D.modulate = Color(1.0, 0.0, 1.0)
+		$Line2D.modulate = Color(1.0, 0.0, 0.0, 0.5)
 	elif path_type == "Player":
-		$Line2D.modulate = Color(0.0, 0.0, 1.0)
+		$Line2D.modulate = Color(0.0, 1.0, 1.0, 0.5)
 
 	# Draw a line_2D following path
 	var i = 0

@@ -3,6 +3,9 @@ extends Node2D
 
 signal rotated(undo)
 
+var rotated_tex = preload("res://Assets/Sprites/new_hex_rotated.png")
+var normal_tex = preload("res://Assets/Sprites/new_hex_normal.png")
+
 export var path_30  := true setget disable_enable_30
 export var path_90  := true setget disable_enable_90
 export var path_150 := true setget disable_enable_150
@@ -33,6 +36,11 @@ func _ready():
 		$Arrow_Right.disabled = true
 
 
+func clear_rotations():
+	last_rotations = [""]
+	$Hex.set_texture(normal_tex)
+
+
 func set_astar_weight(weight):
 	astar_weight = weight
 
@@ -48,12 +56,15 @@ func change_tile_type(type):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delt1a):
 	if optimal_tile:
-		$Hex.modulate = Color(1, 1, 1)
+		pass
+		#$Hex.modulate = Color(1, 1, 1)
 	else:
 		if is_tile_on:
-			$Hex.modulate = Color(0.6, 0.6, 0.6)
+			pass
+			#$Hex.modulate = Color(0.6, 0.6, 0.6)
 		else:
-			$Hex.modulate = Color(0.2, 0.2, 0.2)
+			pass
+			#$Hex.modulate = Color(0.2, 0.2, 0.2)
 	
 	for path in $Hex.get_children():
 		var areas = path.get_child(0).get_child(0).get_overlapping_areas()
@@ -160,10 +171,10 @@ func _on_Arrow_Left_pressed():
 		emit_signal("rotated", undo)
 		rotate_left(!undo)
 	# If has been rotated, outline with shader
-	#f len(last_rotations) > 1:
-	#	$Hex.get_material().set_shader_param("line_color", Plane(1.0, 0.0, 0.0, 0.8))
-	#elif len(last_rotations) == 1:
-	#	$Hex.get_material().set_shader_param("line_color", Plane(1.0, 0.0, 0.0, 0.0))
+	if len(last_rotations) > 1:
+		$Hex.set_texture(rotated_tex)
+	elif len(last_rotations) == 1:
+		$Hex.set_texture(normal_tex)
 
 
 func rotate_right(append):
@@ -181,7 +192,7 @@ func _on_Arrow_Right_pressed():
 		emit_signal("rotated", undo)
 		rotate_right(!undo)
 	# If has been rotated, outline with shader
-	#if len(last_rotations) > 1:
-	#	$Hex.get_material().set_shader_param("line_color", Plane(1.0, 0.0, 0.0, 0.8))
-	#elif len(last_rotations) == 1:
-	#	$Hex.get_material().set_shader_param("line_color", Plane(1.0, 0.0, 0.0, 0.0))
+	if len(last_rotations) > 1:
+		$Hex.set_texture(rotated_tex)
+	elif len(last_rotations) == 1:
+		$Hex.set_texture(normal_tex)

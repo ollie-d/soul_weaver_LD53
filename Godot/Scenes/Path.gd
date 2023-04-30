@@ -21,11 +21,14 @@ func unconnect():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	if state == "unconnected":
-		$Path.modulate = unconnected_color
+		pass
+		#$Path.modulate = unconnected_color
 	elif state == "connected":
-		$Path.modulate = connected_color
+		pass
+		#$Path.modulate = connected_color
 	elif state == "optimal":
-		$Path.modulate = optimal_color
+		pass
+		#$Path.modulate = optimal_color
 
 
 func propagate():

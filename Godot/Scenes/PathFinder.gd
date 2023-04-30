@@ -32,6 +32,7 @@ func path_find():
 	global_astar.astar = AStar2D.new()
 	global_astar.astar_dict = {}
 	global_astar.astar_rev_dict = {}
+	
 	# Turn off all hexes first and add points to astar
 	var i := 0
 	for child in self.get_children():
@@ -48,6 +49,8 @@ func path_find():
 	# Find tile where the soul is and highlihg it
 	var curr_tile = $Soul/Area.get_overlapping_areas()[0].get_parent().get_parent()
 	curr_tile.is_tile_on = true
+	# Set lowest point to current tile (not sure if this will fix my issue)
+	global_astar.end_point = curr_tile.tile_name
 	#curr_tile.modulate = Color(0.5, 0.3, 0.1)
 	
 	# Determine which tiles are "on" versus "off" by checking path connections
@@ -137,5 +140,11 @@ func _on_Button_pressed():
 		elif global_astar.astar_dict.keys()[path[1]] == "Enemy_Win":
 			# Call defeat
 			print("Oof, you lose")
+			
+	# Clear all hex's rotations
+	for child in self.get_children():
+		var id = child.get_name()
+		if ("_" in id) or ("Start" in id):
+			child.clear_rotations()
 			
 	emit_signal("next_round")
