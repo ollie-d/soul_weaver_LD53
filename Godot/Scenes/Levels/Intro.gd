@@ -13,6 +13,8 @@ func change_level():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Skip.z_index = 100
+	
 	$Audio.play()
 	$Timer.wait_time = 0.3
 	$Timer.start()
@@ -33,6 +35,7 @@ func _ready():
 	$Timer.start()
 	yield($Timer, "timeout")
 	$Soul.visible = true
+	$Skip_Label.visible = true
 	
 	$Timer.wait_time = 5.7
 	$Timer.start()
@@ -116,3 +119,11 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+
+func _on_Skip_pressed():
+	$Audio.stop()
+	$Timer.paused = true
+	global_music.play_music()
+	change_level()
+	

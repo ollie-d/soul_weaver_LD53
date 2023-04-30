@@ -414,7 +414,6 @@ one_shot = true
 [node name="Line2D" type="Line2D" parent="."]
 material = SubResource( 4 )
 position = Vector2( 104, 50 )
-points = PoolVector2Array( 5, 11, -22, 32, -24, 51 )
 default_color = Color( 1, 1, 1, 1 )
 texture = SubResource( 5 )
 texture_mode = 1
@@ -426,6 +425,8 @@ one_shot = true
 position = Vector2( 570, 477 )
 
 [connection signal="next_round" from="." to="Board" method="_on_Level_next_round"]
+[connection signal="defeat" from="Board" to="." method="defeat"]
 [connection signal="next_turn" from="Board" to="." method="_on_Board_next_turn"]
+[connection signal="victory" from="Board" to="." method="victory"]
 [connection signal="pressed" from="Board/Button" to="Board" method="_on_Button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

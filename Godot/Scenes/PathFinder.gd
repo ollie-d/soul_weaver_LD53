@@ -14,6 +14,8 @@ extends Node2D
 # var a = 2
 # var b = "text"
 signal next_turn
+signal victory
+signal defeat
 
 
 # Called when the node enters the scene tree for the first time.
@@ -136,9 +138,12 @@ func next_round():
 		if global_astar.astar_dict.keys()[path[1]] == "Player_Win":
 			# Call next level OR game win function
 			print("Gz you win")
+			global_astar.player_won = true
+			emit_signal("victory")
 		elif global_astar.astar_dict.keys()[path[1]] == "Enemy_Win":
 			# Call defeat
 			print("Oof, you lose")
+			emit_signal("defeat")
 			
 	# Clear all hex's rotations
 	for child in self.get_children():

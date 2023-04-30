@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="Soul Weaver"
-run/main_scene="res://Scenes/Levels/Intro.tscn"
+run/main_scene="res://Scenes/Levels/BaseLevel.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -28,6 +28,10 @@ window/size/height=1024
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
 
 [physics]
 

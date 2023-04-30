@@ -4,6 +4,9 @@ extends Node2D
 onready var line_offset = $Line2D.position
 onready var rng = RandomNumberGenerator.new()
 
+const defeat_scene = preload("res://Scenes/Defeat.tscn")
+const victory_scene = preload("res://Scenes/Victory.tscn")
+
 signal next_round
 
 func _ready():
@@ -73,9 +76,19 @@ func next_round():
 	$EnemyRotations.text =  text.format({"curr":globals.enemy_rotations_remaining, "max": globals.max_enemy_rotations})
 	$PlayerRotations.text =  text.format({"curr":globals.player_rotations_remaining, "max": globals.max_player_rotations})
 	globals.current_round += 1
-	text = "Round {round}/{max}"
-	$Label.text = text.format({"round":globals.current_round, "max":globals.max_rounds})
-	globals.turn = "Player"
+	if globals.current_round > globals.max_rounds:
+		# Trigger defeat if victory condition isn't triggered on next propagate
+		$Timer.start()
+		
+		if global_astar.player_won:
+			victory()
+		else:
+			defeat()
+		
+	else:
+		text = "Round {round}/{max}"
+		$Label.text = text.format({"round":globals.current_round, "max":globals.max_rounds})
+		globals.turn = "Player"
 	
 
 func finish_turn():
@@ -148,3 +161,21 @@ func _on_Timer_timeout():
 func _on_Board_next_turn():
 	finish_turn()
 	$Timer.start()
+
+
+func victory():
+	globals.current_layer += 1
+	if globals.current_layer <= 5:
+		get_parent().add_child(victory_scene.instance())
+		queue_free()
+	else:
+		# Do something special for a full completion
+		pass
+
+
+func defeat():
+	get_parent().add_child(defeat_scene.instance())
+	queue_free()
+
+
+

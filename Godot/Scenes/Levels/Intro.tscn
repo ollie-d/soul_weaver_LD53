@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scenes/Soul.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Fonts/RobotoSlab-VariableFont_wght.ttf" type="DynamicFontData" id=2]
@@ -7,10 +7,18 @@
 [ext_resource path="res://Scenes/Levels/CinematicLevel.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Levels/CinematicLevel.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/Layers.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/Fonts/Deutsch.ttf" type="DynamicFontData" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 72
 font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 24
+font_data = ExtResource( 8 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 55, 10 )
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 4 )
@@ -143,4 +151,20 @@ align = 1
 visible = false
 position = Vector2( 281, 249 )
 
+[node name="Skip_Label" type="Label" parent="."]
+visible = false
+margin_left = 2.0
+margin_top = 3.0
+margin_right = 114.0
+margin_bottom = 31.0
+custom_colors/font_color = Color( 0.117647, 0.109804, 0.109804, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "(Skip Intro)"
+
+[node name="Skip" type="TouchScreenButton" parent="."]
+position = Vector2( 5, 5 )
+z_index = 100
+shape = SubResource( 3 )
+
 [connection signal="timeout" from="Level/RotateTimer" to="Level" method="_on_RotateTimer_timeout"]
+[connection signal="pressed" from="Skip" to="." method="_on_Skip_pressed"]
