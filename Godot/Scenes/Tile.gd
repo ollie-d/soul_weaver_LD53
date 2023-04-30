@@ -156,8 +156,14 @@ func _on_Arrow_Left_pressed():
 	if last_rotations[-1] == "right":
 		undo = true
 		last_rotations.pop_back()
-	emit_signal("rotated", undo)
-	rotate_left(!undo)
+	if globals.player_rotations_remaining > 0 or undo:
+		emit_signal("rotated", undo)
+		rotate_left(!undo)
+	# If has been rotated, outline with shader
+	#f len(last_rotations) > 1:
+	#	$Hex.get_material().set_shader_param("line_color", Plane(1.0, 0.0, 0.0, 0.8))
+	#elif len(last_rotations) == 1:
+	#	$Hex.get_material().set_shader_param("line_color", Plane(1.0, 0.0, 0.0, 0.0))
 
 
 func rotate_right(append):
@@ -171,5 +177,11 @@ func _on_Arrow_Right_pressed():
 	if last_rotations[-1] == "left":
 		undo = true
 		last_rotations.pop_back()
-	emit_signal("rotated", undo)
-	rotate_right(!undo)
+	if globals.player_rotations_remaining > 0 or undo:
+		emit_signal("rotated", undo)
+		rotate_right(!undo)
+	# If has been rotated, outline with shader
+	#if len(last_rotations) > 1:
+	#	$Hex.get_material().set_shader_param("line_color", Plane(1.0, 0.0, 0.0, 0.8))
+	#elif len(last_rotations) == 1:
+	#	$Hex.get_material().set_shader_param("line_color", Plane(1.0, 0.0, 0.0, 0.0))

@@ -72,16 +72,22 @@ func path_find():
 	var player_win_connected = global_astar.astar_dict["Player_Win"] in path_player
 	var enemy_win_connected = global_astar.astar_dict["Enemy_Win"] in path_enemy
 	
+	# Variable to tell things what kind of path we have
+	var path_type = "Player"
+	
 	if player_win_connected and enemy_win_connected:
 		# If enemy path is shorter, set path to that
 		if len(path_enemy) < len(path_player):
 			path = path_enemy
+			path_type = "Enemy"
 	elif enemy_win_connected and not player_win_connected:
 		# If player win is not connected, choose enemy path if it is
 		path = path_enemy
+		path_type = "Enemy"
 	elif len(path_enemy) + len(path_player) == 0:
 		# If neither enemy nor player win connected, path to lowest point.
 		# This should be done for each layer
+		path_type = "Normal"
 		for child in self.get_children():
 			var id = child.get_name()
 			if ("_" in id) or ("Start" in id):
@@ -111,12 +117,12 @@ func path_find():
 		if len(path) > 0:
 			if global_astar.astar_dict[item] in path:
 				self.get_node(item).optimal_tile = true
-			
-	return path
+	
+	return [path, path_type]
 
 
 func _on_Button_pressed():
-	var path = path_find()
+	var path = path_find()[0]
 	
 	# Move soul to the next cell (if not trapped)
 	if len(path) > 1:
