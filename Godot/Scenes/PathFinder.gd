@@ -13,7 +13,7 @@ extends Node2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-signal next_round
+signal next_turn
 
 
 # Called when the node enters the scene tree for the first time.
@@ -125,8 +125,7 @@ func path_find():
 	
 	return [path, path_type]
 
-
-func _on_Button_pressed():
+func next_round():
 	var path = path_find()[0]
 	
 	# Move soul to the next cell (if not trapped)
@@ -146,5 +145,11 @@ func _on_Button_pressed():
 		var id = child.get_name()
 		if ("_" in id) or ("Start" in id):
 			child.clear_rotations()
-			
-	emit_signal("next_round")
+
+
+func _on_Button_pressed():
+	emit_signal("next_turn")
+
+
+func _on_Level_next_round():
+	next_round()

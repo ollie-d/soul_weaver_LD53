@@ -1,7 +1,10 @@
 extends Node2D
 
 # Called when the node enters the scene tree for the first time.
-var line_offset = Vector2(-104, -50)
+onready var line_offset = $Line2D.position#Vector2(-104, -50)
+onready var rng = RandomNumberGenerator.new()
+
+signal next_round
 
 func _ready():
 	# Make sure soul is at the top
@@ -10,7 +13,68 @@ func _ready():
 		var id = child.get_name()
 		if ("_" in id) or ("Start" in id):
 			child.connect("rotated", self, "track_rotations")
-			
+	
+	globals.current_round = 0
+	globals.turn = "Player"
+	next_round()
+	$Timer.start()
+
+
+func _physics_process(delta):
+	pass
+
+func enemy_turn():
+	if globals.turn == "Enemy":
+		# This is the enemy's AI
+		
+		# Harold will pick a random tile and rotate it then end his turn
+		for turn in range(globals.max_enemy_rotations):
+			print(turn)
+			var hexes = []
+			for child in $Board.get_children():
+				var id = child.get_name()
+				if ("_" in id) or ("Start" in id):
+					hexes.append(child)
+			var hex = hexes[rng.randi_range(0, len(hexes))]
+			var direction = "left"
+			if rng.randi_range(0, 1) == 1:
+				direction = "right"
+				
+			# Wait some random amount of time
+			$TurnTimer.wait_time = rng.randf_range(0.5, 1.5)
+			$TurnTimer.start()
+			yield($TurnTimer, "timeout")
+			if direction == "left":
+				hex.rotate_left(true)
+			elif direction == "right":
+				hex.rotate_right(true)
+			else:
+				pass # do nothing
+			$Timer.start()
+		
+		$TurnTimer.wait_time = 1.5
+		$TurnTimer.start()
+		yield($TurnTimer, "timeout")
+		finish_turn()
+
+
+func next_round():
+	globals.current_round += 1
+	var text = "Round {round}/{max}"
+	$Label.text = text.format({"round":globals.current_round, "max":globals.max_rounds})
+	globals.turn = "Player"
+
+func finish_turn():
+	# Check what player can do based on turn
+	if globals.turn == "Player":
+		globals.turn = "Enemy"
+		$Board/Button.disabled = true
+		enemy_turn()
+	elif globals.turn == "Enemy":
+		globals.turn = "Player"
+		$Board/Button.disabled = false
+		next_round()
+		emit_signal("next_round")
 	$Timer.start()
 
 
@@ -40,17 +104,21 @@ func _on_Timer_timeout():
 	$Line2D.clear_points()
 	
 	if path_type == "Normal":
-		$Line2D.modulate = Color(1.0, 1.0, 1.0, 0.5)
+		pass
+		#$Line2D.modulate = Color(1.0, 1.0, 1.0, 0.5)
 	elif path_type == "Enemy":
-		$Line2D.modulate = Color(1.0, 0.0, 0.0, 0.5)
+		pass
+		#$Line2D.modulate = Color(1.0, 0.0, 0.0, 0.5)
 	elif path_type == "Player":
-		$Line2D.modulate = Color(0.0, 1.0, 1.0, 0.5)
+		pass
+		#$Line2D.modulate = Color(0.0, 1.0, 1.0, 0.5)
 
 	# Draw a line_2D following path
 	var i = 0
 	for point in path:
-		$Line2D.add_point(self.find_node(global_astar.astar_rev_dict[point]).global_position + line_offset)
+		$Line2D.add_point(self.find_node(global_astar.astar_rev_dict[point]).global_position - line_offset)
 
 
-func _on_Board_next_round():
+func _on_Board_next_turn():
+	finish_turn()
 	$Timer.start()

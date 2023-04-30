@@ -81,14 +81,20 @@ func _physics_process(delt1a):
 					is_connected = false
 					
 	# Disable rotation on 6-path hexes
-	if path_30 and path_90 and path_150 and path_210 and path_270 and path_330:
-		can_rotate = false
-		$Arrow_Left.disabled = true
-		$Arrow_Right.disabled = true
-	else:
-		can_rotate = true
-		$Arrow_Left.disabled = false
-		$Arrow_Right.disabled = false
+	if not Engine.is_editor_hint():
+		if globals.turn == "Player":
+			if path_30 and path_90 and path_150 and path_210 and path_270 and path_330:
+				can_rotate = false
+				$Arrow_Left.disabled = true
+				$Arrow_Right.disabled = true
+			else:
+				can_rotate = true
+				$Arrow_Left.disabled = false
+				$Arrow_Right.disabled = false
+		elif globals.turn == "Enemy":
+			can_rotate = false
+			$Arrow_Left.disabled = true
+			$Arrow_Right.disabled = true
 
 
 func disable_enable(angle, b):
@@ -160,6 +166,11 @@ func rotate_left(append):
 	$Hex.rotation_degrees -= 60
 	if append:
 		last_rotations.append("left")
+	# If has been rotated, outline with shader
+	if len(last_rotations) > 1:
+		$Hex.set_texture(rotated_tex)
+	elif len(last_rotations) == 1:
+		$Hex.set_texture(normal_tex)
 
 
 func _on_Arrow_Left_pressed():
@@ -170,17 +181,17 @@ func _on_Arrow_Left_pressed():
 	if globals.player_rotations_remaining > 0 or undo:
 		emit_signal("rotated", undo)
 		rotate_left(!undo)
-	# If has been rotated, outline with shader
-	if len(last_rotations) > 1:
-		$Hex.set_texture(rotated_tex)
-	elif len(last_rotations) == 1:
-		$Hex.set_texture(normal_tex)
 
 
 func rotate_right(append):
 	$Hex.rotation_degrees += 60
 	if append:
 		last_rotations.append("right")
+	# If has been rotated, outline with shader
+	if len(last_rotations) > 1:
+		$Hex.set_texture(rotated_tex)
+	elif len(last_rotations) == 1:
+		$Hex.set_texture(normal_tex)
 
 
 func _on_Arrow_Right_pressed():
@@ -191,8 +202,4 @@ func _on_Arrow_Right_pressed():
 	if globals.player_rotations_remaining > 0 or undo:
 		emit_signal("rotated", undo)
 		rotate_right(!undo)
-	# If has been rotated, outline with shader
-	if len(last_rotations) > 1:
-		$Hex.set_texture(rotated_tex)
-	elif len(last_rotations) == 1:
-		$Hex.set_texture(normal_tex)
+	
