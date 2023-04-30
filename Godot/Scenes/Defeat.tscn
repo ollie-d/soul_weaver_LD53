@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/Fonts/RobotoSlab-VariableFont_wght.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scenes/Defeat.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/WeirdButton.tscn" type="PackedScene" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 72
@@ -32,6 +33,7 @@ text = "Defeat"
 align = 1
 
 [node name="Button" type="Button" parent="."]
+visible = false
 margin_left = 264.0
 margin_top = 709.0
 margin_right = 535.0
@@ -39,4 +41,13 @@ margin_bottom = 780.0
 custom_fonts/font = SubResource( 2 )
 text = "Try again?"
 
+[node name="WeirdButton" parent="." instance=ExtResource( 3 )]
+position = Vector2( 312, 709 )
+
+[node name="Label" parent="WeirdButton" index="1"]
+text = "Try Again?"
+
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="WeirdButton/Button" to="." method="_on_Button_pressed"]
+
+[editable path="WeirdButton"]

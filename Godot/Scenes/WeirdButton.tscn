@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/weird_button.png" type="Texture" id=1]
+[ext_resource path="res://Assets/weird_button_hover.png" type="Texture" id=2]
+[ext_resource path="res://Assets/weird_button_pressed.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Fonts/RobotoSlab-VariableFont_wght.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+font_data = ExtResource( 4 )
+
+[node name="WeirdButton" type="Node2D"]
+
+[node name="Button" type="TextureButton" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture_normal = ExtResource( 1 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 5.0
+margin_top = 10.0
+margin_right = 161.0
+margin_bottom = 60.0
+custom_fonts/font = SubResource( 1 )
+text = "Press Me"
+align = 1
+valign = 1

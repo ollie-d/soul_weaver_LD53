@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/flute_puff_mondo_reverb.ogg-7c4891b85d423770e733ba972e570702.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sounds/flute_puff_mondo_reverb.ogg"
+dest_files=[ "res://.import/flute_puff_mondo_reverb.ogg-7c4891b85d423770e733ba972e570702.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

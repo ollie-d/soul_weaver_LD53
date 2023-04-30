@@ -163,6 +163,8 @@ func turn_off():
 
 
 func rotate_left(append):
+	if globals.current_layer > 0:
+		$Sound.play()
 	$Hex.rotation_degrees -= 60
 	if append:
 		last_rotations.append("left")
@@ -184,6 +186,8 @@ func _on_Arrow_Left_pressed():
 
 
 func rotate_right(append):
+	if globals.current_layer > 0:
+		$Sound.play()
 	$Hex.rotation_degrees += 60
 	if append:
 		last_rotations.append("right")

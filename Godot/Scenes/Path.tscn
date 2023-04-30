@@ -20,3 +20,6 @@ color = Color( 0.105882, 0.105882, 0.105882, 1 )
 [node name="Collision" type="CollisionShape2D" parent="Path/Area"]
 position = Vector2( 7.9282, -2.26795 )
 shape = SubResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

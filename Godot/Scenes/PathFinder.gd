@@ -107,7 +107,7 @@ func path_find():
 							var start_point = global_astar.astar_dict[curr_tile.tile_name]
 							var path_current = global_astar.astar.get_id_path(start_point, global_astar.astar_dict[global_astar.end_point])
 							var path_new = global_astar.astar.get_id_path(start_point, global_astar.astar_dict[new_id])
-							if len(path_new) < len(path_current):
+							if len(path_new) <= len(path_current):
 								path = path_new
 								global_astar.end_point = new_id
 							else:
@@ -133,6 +133,7 @@ func next_round():
 	# Move soul to the next cell (if not trapped)
 	if len(path) > 1:
 		$Soul.position = get_node(global_astar.astar_dict.keys()[path[1]]).position
+		$Sound.play()
 		
 		# Check if the end cell is an end condition
 		if global_astar.astar_dict.keys()[path[1]] == "Player_Win":

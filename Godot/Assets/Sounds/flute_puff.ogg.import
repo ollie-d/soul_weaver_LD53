@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/flute_puff.ogg-4d88a16ca477fcbbe242c3113b50dd0e.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sounds/flute_puff.ogg"
+dest_files=[ "res://.import/flute_puff.ogg-4d88a16ca477fcbbe242c3113b50dd0e.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

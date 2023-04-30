@@ -8,6 +8,7 @@ const level_1 = preload("res://Scenes/Levels/BaseLevel.tscn")
 
 
 func change_level():
+	globals.current_layer = 1
 	get_parent().add_child(level_1.instance())
 	queue_free()
 

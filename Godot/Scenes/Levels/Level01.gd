@@ -1,5 +1,7 @@
 extends Node2D
 
+# LEVEL 1
+
 # Called when the node enters the scene tree for the first time.
 onready var line_offset = $Line2D.position
 onready var rng = RandomNumberGenerator.new()
@@ -179,3 +181,14 @@ func defeat():
 
 
 
+
+
+func _on_CheckConnect_pressed():
+	print("pressed")
+	var point0 = global_astar.astar_dict[$Board/Node1.text]
+	var point1 = global_astar.astar_dict[$Board/Node2.text]
+	print(global_astar.astar.are_points_connected(point0, point1, false))
+
+
+func _on_Button_pressed():
+	pass # Replace with function body.

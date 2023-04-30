@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/tiny_bongo_boop.ogg-6c4b114a7727bb4e7874e8e05f01573e.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sounds/tiny_bongo_boop.ogg"
+dest_files=[ "res://.import/tiny_bongo_boop.ogg-6c4b114a7727bb4e7874e8e05f01573e.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
