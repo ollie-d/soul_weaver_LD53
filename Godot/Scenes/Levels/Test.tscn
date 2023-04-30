@@ -1,31 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scenes/Board.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Tile.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/PathFinder.gd" type="Script" id=3]
-[ext_resource path="res://Scenes/Soul.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Sprites/arrow_right.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Sprites/arrow_right_pressed.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/arrow_right_normal.png" type="Texture" id=3]
 
 [node name="Level" type="Node2D"]
 
-[node name="Board" parent="." instance=ExtResource( 1 )]
-script = ExtResource( 3 )
-
-[node name="Start" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 513, 117 )
-path_90 = false
-path_150 = false
-path_210 = false
-path_270 = false
-path_330 = false
-
-[node name="R1_00" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 460, 208 )
-path_90 = false
-path_150 = false
-path_210 = false
-path_270 = false
-path_330 = false
-
-[node name="Soul" parent="Board" instance=ExtResource( 4 )]
-position = Vector2( 513, 117 )
-scale = Vector2( 0.4, 0.4 )
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_left = 70.0
+margin_top = 35.0
+margin_right = 147.0
+margin_bottom = 104.0
+texture_normal = ExtResource( 1 )
+texture_pressed = ExtResource( 2 )
+texture_hover = ExtResource( 3 )

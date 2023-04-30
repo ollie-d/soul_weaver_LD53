@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Scenes/Board.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Tile.tscn" type="PackedScene" id=2]
@@ -10,7 +10,15 @@
 [ext_resource path="res://Assets/Fonts/Deutsch.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://Assets/Fonts/RobotoSlab-VariableFont_wght.ttf" type="DynamicFontData" id=9]
 [ext_resource path="res://Scenes/Levels/Level01.gd" type="Script" id=10]
-[ext_resource path="res://Assets/Sprites/line_tex.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Sprites/line_animation/line_004.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Sprites/line_animation/line_005.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Sprites/line_animation/line_007.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Sprites/line_animation/line_006.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Sprites/line_animation/line_008.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Sprites/line_animation/line_001.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Sprites/line_animation/line_000.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Sprites/line_animation/line_002.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Sprites/line_animation/line_003.png" type="Texture" id=24]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
@@ -27,6 +35,38 @@ font_data = ExtResource( 9 )
 [sub_resource type="CanvasItemMaterial" id=4]
 blend_mode = 1
 
+[sub_resource type="AnimatedTexture" id=5]
+flags = 6
+frames = 14
+fps = 15.0
+frame_0/texture = ExtResource( 22 )
+frame_1/texture = ExtResource( 21 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 23 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 24 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 11 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 13 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 16 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 15 )
+frame_7/delay_sec = 0.0
+frame_8/texture = ExtResource( 17 )
+frame_8/delay_sec = 0.0
+frame_9/texture = ExtResource( 15 )
+frame_9/delay_sec = 0.0
+frame_10/texture = ExtResource( 16 )
+frame_10/delay_sec = 0.0
+frame_11/texture = ExtResource( 13 )
+frame_11/delay_sec = 0.0
+frame_12/texture = ExtResource( 24 )
+frame_12/delay_sec = 0.0
+frame_13/texture = ExtResource( 23 )
+frame_13/delay_sec = 0.0
+
 [node name="Level" type="Node2D"]
 script = ExtResource( 10 )
 
@@ -40,8 +80,8 @@ tile_type = "Start"
 
 [node name="R1_00" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 460, 208 )
-path_90 = false
-path_270 = false
+path_30 = false
+path_150 = false
 path_330 = false
 tile_type = "Neutral"
 layer = 1
@@ -50,7 +90,7 @@ can_rotate = true
 [node name="R1_01" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 566, 208 )
 path_30 = false
-path_150 = false
+path_330 = false
 tile_type = "Neutral"
 layer = 1
 can_rotate = true
@@ -315,12 +355,12 @@ text = "End Turn"
 [node name="Label" type="Label" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = 137.0
+margin_left = 119.0
 margin_top = 10.0
-margin_right = 361.0
+margin_right = 422.0
 margin_bottom = 82.0
 custom_fonts/font = SubResource( 1 )
-text = "Round 0"
+text = "Round 0/30"
 
 [node name="Turn" type="Sprite" parent="."]
 position = Vector2( 669, 512 )
@@ -370,12 +410,11 @@ wait_time = 0.1
 one_shot = true
 
 [node name="Line2D" type="Line2D" parent="."]
-modulate = Color( 1, 1, 1, 0.403922 )
 material = SubResource( 4 )
 position = Vector2( 104, 50 )
 points = PoolVector2Array( 5, 11, -22, 32, -24, 51 )
 default_color = Color( 1, 1, 1, 1 )
-texture = ExtResource( 11 )
+texture = SubResource( 5 )
 texture_mode = 1
 
 [node name="TurnTimer" type="Timer" parent="."]
