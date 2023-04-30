@@ -24,6 +24,11 @@ global_music="*res://Scenes/Globals/global_music.tscn"
 
 window/size/width=768
 window/size/height=1024
+window/size/resizable=false
+
+[global]
+
+Full=false
 
 [gui]
 
