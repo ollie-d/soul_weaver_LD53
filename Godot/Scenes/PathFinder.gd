@@ -67,9 +67,6 @@ func _on_Button_pressed():
 		path_enemy.append(_i)
 		
 	# Check if either path goes to the end
-	print("Player path goes  to win:" + str(global_astar.astar_dict["Player_Win"] in path_player))
-	print("Enemy path goes  to win:" + str(global_astar.astar_dict["Enemy_Win"] in path_enemy))
-	
 	var path = path_player
 	var player_win_connected = global_astar.astar_dict["Player_Win"] in path_player
 	var enemy_win_connected = global_astar.astar_dict["Enemy_Win"] in path_enemy
@@ -81,13 +78,26 @@ func _on_Button_pressed():
 	elif enemy_win_connected and not player_win_connected:
 		# If player win is not connected, choose enemy path if it is
 		path = path_enemy
-	else:
+	elif not enemy_win_connected and not player_win_connected:
 		# If neither goes to the end, choose the shortest path
 		if len(path_enemy) < len(path_player):
 			path = path_enemy
+	elif len(path_enemy) + len(path_player) == 0:
+		# If there is no path, doesn't matter?
+		pass
 	
 	for item in global_astar.astar_dict.keys():
 		if global_astar.astar_dict[item] in path:
 			self.get_node(item).optimal_tile = true
 	
-	pass # Replace with function body.
+	# Move soul to the next cell (if not trapped)
+	if len(path) > 1:
+		$Soul.position = get_node(global_astar.astar_dict.keys()[path[1]]).position
+		
+		# Check if the end cell is an end condition
+		if global_astar.astar_dict.keys()[path[1]] == "Player_Win":
+			# Call next level OR game win function
+			print("Gz you win")
+		elif global_astar.astar_dict.keys()[path[1]] == "Enemy_Win":
+			# Call defeat
+			print("Oof, you lose")

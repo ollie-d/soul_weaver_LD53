@@ -8,15 +8,11 @@
 [node name="Level" type="Node2D"]
 
 [node name="Board" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1, 25 )
 script = ExtResource( 3 )
 
 [node name="Start" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 513, 117 )
-path_90 = false
-path_150 = false
-path_210 = false
-path_270 = false
-path_330 = false
 tile_type = "Start"
 
 [node name="R1_00" parent="Board" instance=ExtResource( 2 )]
@@ -46,7 +42,6 @@ layer = 2
 [node name="R2_01" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 513, 299 )
 path_30 = false
-path_90 = false
 path_150 = false
 path_330 = false
 tile_type = "Neutral"
@@ -84,7 +79,6 @@ astar_weight = 0.95
 position = Vector2( 566, 390 )
 path_90 = false
 path_210 = false
-path_270 = false
 path_330 = false
 tile_type = "Neutral"
 layer = 3
@@ -159,7 +153,6 @@ astar_weight = 0.95
 position = Vector2( 566, 572 )
 path_30 = false
 path_90 = false
-path_210 = false
 path_270 = false
 tile_type = "Neutral"
 layer = 5
@@ -254,8 +247,6 @@ astar_weight = 0.0
 
 [node name="Player_Win" parent="Board" instance=ExtResource( 2 )]
 position = Vector2( 619, 845 )
-path_30 = false
-path_330 = false
 tile_type = "Player_End"
 layer = 8
 astar_weight = 0.0
@@ -266,9 +257,9 @@ scale = Vector2( 0.4, 0.4 )
 
 [node name="Button" type="Button" parent="Board"]
 margin_left = 428.0
-margin_top = 925.0
+margin_top = 949.0
 margin_right = 579.0
-margin_bottom = 1008.0
-text = "Compute Path"
+margin_bottom = 985.0
+text = "End Round"
 
 [connection signal="pressed" from="Board/Button" to="Board" method="_on_Button_pressed"]

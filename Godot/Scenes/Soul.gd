@@ -17,4 +17,4 @@ func _ready():
 
 
 func _on_Area_area_entered(area):
-	print(area)
+	pass
