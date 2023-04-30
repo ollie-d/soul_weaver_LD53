@@ -20,6 +20,7 @@ global_astar="*res://Scenes/Globals/global_astar.gd"
 
 [display]
 
+window/size/width=768
 window/size/height=1024
 
 [gui]

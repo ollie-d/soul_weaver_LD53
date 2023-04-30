@@ -1,6 +1,8 @@
 tool
 extends Node2D
 
+signal rotated(undo)
+
 export var path_30  := true setget disable_enable_30
 export var path_90  := true setget disable_enable_90
 export var path_150 := true setget disable_enable_150
@@ -14,14 +16,21 @@ export(int, "0", "1", "2", "3", "4", "5", "6", "7", "8") var layer = 0 setget ch
 
 export var astar_weight := 1.0 setget set_astar_weight
 
+export var can_rotate := true setget set_rotate
+
 var is_connected := false # if any paths connect to hexes this is set to true
 var is_tile_on := false
 var tile_name = ""
 var optimal_tile := false
 
+# Use this to track undos
+var last_rotations = [""]
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	if can_rotate == false:
+		$Arrow_Left.disabled = true
+		$Arrow_Right.disabled = true
 
 
 func set_astar_weight(weight):
@@ -59,6 +68,16 @@ func _physics_process(delt1a):
 				if not Engine.is_editor_hint():
 					path.state = "unconnected"
 					is_connected = false
+					
+	# Disable rotation on 6-path hexes
+	if path_30 and path_90 and path_150 and path_210 and path_270 and path_330:
+		can_rotate = false
+		$Arrow_Left.disabled = true
+		$Arrow_Right.disabled = true
+	else:
+		can_rotate = true
+		$Arrow_Left.disabled = false
+		$Arrow_Right.disabled = false
 
 
 func disable_enable(angle, b):
@@ -110,6 +129,10 @@ func disable_enable_330(b):
 	disable_enable(330, b)
 
 
+func set_rotate(status):
+	can_rotate = status
+
+
 func turn_on():
 	is_tile_on = true
 	for child in $Hex.get_children():
@@ -122,9 +145,31 @@ func turn_off():
 		child.parent_hex_on = false
 
 
-func _on_Arrow_Left_pressed():
+func rotate_left(append):
 	$Hex.rotation_degrees -= 60
+	if append:
+		last_rotations.append("left")
+
+
+func _on_Arrow_Left_pressed():
+	var undo = false
+	if last_rotations[-1] == "right":
+		undo = true
+		last_rotations.pop_back()
+	emit_signal("rotated", undo)
+	rotate_left(!undo)
+
+
+func rotate_right(append):
+	$Hex.rotation_degrees += 60
+	if append:
+		last_rotations.append("right")
 
 
 func _on_Arrow_Right_pressed():
-	$Hex.rotation_degrees += 60
+	var undo = false
+	if last_rotations[-1] == "left":
+		undo = true
+		last_rotations.pop_back()
+	emit_signal("rotated", undo)
+	rotate_right(!undo)

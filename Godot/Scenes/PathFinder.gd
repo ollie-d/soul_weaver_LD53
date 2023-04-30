@@ -26,10 +26,10 @@ func _ready():
 func _physics_process(delta):
 	pass
 
-
-func _on_Button_pressed():
+func path_find():
 	global_astar.astar = AStar2D.new()
 	global_astar.astar_dict = {}
+	global_astar.astar_rev_dict = {}
 	# Turn off all hexes first and add points to astar
 	var i := 0
 	for child in self.get_children():
@@ -39,6 +39,7 @@ func _on_Button_pressed():
 			child.optimal_tile = false
 			global_astar.astar.add_point(i, child.position, child.astar_weight)
 			global_astar.astar_dict[id] = i # map id to name in a dict
+			global_astar.astar_rev_dict[i] = id # map reverse of name to id
 			child.tile_name = id # set tile name for connecting
 			i += 1
 	
@@ -78,17 +79,44 @@ func _on_Button_pressed():
 	elif enemy_win_connected and not player_win_connected:
 		# If player win is not connected, choose enemy path if it is
 		path = path_enemy
-	elif not enemy_win_connected and not player_win_connected:
-		# If neither goes to the end, choose the shortest path
-		if len(path_enemy) < len(path_player):
-			path = path_enemy
 	elif len(path_enemy) + len(path_player) == 0:
-		# If there is no path, doesn't matter?
-		pass
+		# If neither enemy nor player win connected, path to lowest point.
+		# This should be done for each layer
+		for child in self.get_children():
+			var id = child.get_name()
+			if ("_" in id) or ("Start" in id):
+				var connections = global_astar.astar.get_point_connections(global_astar.astar_dict[id])
+				if len(connections) > 0:
+					for c in connections:
+						var new_id = global_astar.astar_rev_dict[c]
+						if self.find_node(new_id).layer == self.find_node(global_astar.end_point).layer:
+							# If layers are equal, see which path is shorter
+							var start_point = global_astar.astar_dict[curr_tile.tile_name]
+							var path_current = global_astar.astar.get_id_path(start_point, global_astar.astar_dict[global_astar.end_point])
+							var path_new = global_astar.astar.get_id_path(start_point, global_astar.astar_dict[new_id])
+							if len(path_new) < len(path_current):
+								path = path_new
+								global_astar.end_point = new_id
+							else:
+								path = path_current
+						elif self.find_node(new_id).layer > self.find_node(global_astar.end_point).layer:
+							# If layer is deeper, set new path
+							var start_point = global_astar.astar_dict[curr_tile.tile_name]
+							path = global_astar.astar.get_id_path(start_point, global_astar.astar_dict[new_id])
+							global_astar.end_point = new_id
+				#else:
+				#	path = []
 	
 	for item in global_astar.astar_dict.keys():
-		if global_astar.astar_dict[item] in path:
-			self.get_node(item).optimal_tile = true
+		if len(path) > 0:
+			if global_astar.astar_dict[item] in path:
+				self.get_node(item).optimal_tile = true
+			
+	return path
+
+
+func _on_Button_pressed():
+	var path = path_find()
 	
 	# Move soul to the next cell (if not trapped)
 	if len(path) > 1:
