@@ -8,6 +8,7 @@ onready var player_rotations_remaining = max_player_rotations
 onready var turn := "Player"
 onready var max_rounds := 30
 onready var current_round := 1
+onready var current_layer := 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

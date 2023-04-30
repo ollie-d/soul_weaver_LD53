@@ -1,7 +1,7 @@
 extends Node2D
 
 # Called when the node enters the scene tree for the first time.
-onready var line_offset = $Line2D.position#Vector2(-104, -50)
+onready var line_offset = $Line2D.position
 onready var rng = RandomNumberGenerator.new()
 
 signal next_round
@@ -41,7 +41,7 @@ func enemy_turn():
 				var id = child.get_name()
 				if ("_" in id) and (not "_Win" in id):
 					hexes.append(child)
-			var hex = hexes[rng.randi_range(0, len(hexes))]
+			var hex = hexes[rng.randi_range(0, len(hexes)-1)]
 			var direction = "left"
 			if rng.randi_range(0, 1) == 1:
 				direction = "right"

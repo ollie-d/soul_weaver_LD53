@@ -1,0 +1,147 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Fonts/Augusta.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/Sprites/circle_64.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Fonts/Augusta-Shadow.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Scenes/Layers.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=2]
+size = 56
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+use_filter = true
+font_data = ExtResource( 1 )
+
+[node name="Layers" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Line1" type="ColorRect" parent="."]
+margin_left = 54.0
+margin_top = 64.0
+margin_right = 64.0
+margin_bottom = 124.0
+
+[node name="Line2" type="ColorRect" parent="."]
+margin_left = 54.0
+margin_top = 167.0
+margin_right = 64.0
+margin_bottom = 227.0
+
+[node name="Line3" type="ColorRect" parent="."]
+margin_left = 54.0
+margin_top = 263.0
+margin_right = 64.0
+margin_bottom = 323.0
+
+[node name="Line4" type="ColorRect" parent="."]
+margin_left = 54.0
+margin_top = 368.0
+margin_right = 64.0
+margin_bottom = 428.0
+
+[node name="Layer1" type="Sprite" parent="."]
+position = Vector2( 59, 43 )
+texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="Layer1"]
+margin_left = -10.0
+margin_top = -34.0
+margin_right = 30.0
+margin_bottom = 29.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "1"
+
+[node name="Layer2" type="Sprite" parent="."]
+position = Vector2( 59, 142 )
+texture = ExtResource( 2 )
+
+[node name="Label2" type="Label" parent="Layer2"]
+margin_left = -14.0
+margin_top = -34.0
+margin_right = 26.0
+margin_bottom = 29.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "2"
+
+[node name="Layer3" type="Sprite" parent="."]
+position = Vector2( 59, 241 )
+texture = ExtResource( 2 )
+
+[node name="Label3" type="Label" parent="Layer3"]
+margin_left = -15.0
+margin_top = -34.0
+margin_right = 25.0
+margin_bottom = 29.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "3"
+
+[node name="Layer4" type="Sprite" parent="."]
+position = Vector2( 59, 340 )
+texture = ExtResource( 2 )
+
+[node name="Label4" type="Label" parent="Layer4"]
+margin_left = -18.0
+margin_top = -32.0
+margin_right = 22.0
+margin_bottom = 31.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "4"
+
+[node name="Layer5" type="Sprite" parent="."]
+position = Vector2( 59, 441 )
+texture = ExtResource( 2 )
+
+[node name="Label5" type="Label" parent="Layer5"]
+margin_left = -13.0
+margin_top = -32.0
+margin_right = 27.0
+margin_bottom = 31.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "5"
+
+[node name="Name1" type="Label" parent="."]
+margin_left = 99.0
+margin_top = 30.0
+margin_right = 156.0
+margin_bottom = 57.0
+custom_fonts/font = SubResource( 1 )
+text = "Harold"
+
+[node name="Name2" type="Label" parent="."]
+margin_left = 99.0
+margin_top = 128.0
+margin_right = 156.0
+margin_bottom = 155.0
+custom_fonts/font = SubResource( 1 )
+text = "Ta"
+
+[node name="Name3" type="Label" parent="."]
+margin_left = 99.0
+margin_top = 228.0
+margin_right = 156.0
+margin_bottom = 255.0
+custom_fonts/font = SubResource( 1 )
+text = "Orlox"
+
+[node name="Name4" type="Label" parent="."]
+margin_left = 99.0
+margin_top = 326.0
+margin_right = 156.0
+margin_bottom = 353.0
+custom_fonts/font = SubResource( 1 )
+text = "Wevja"
+
+[node name="Name5" type="Label" parent="."]
+margin_left = 99.0
+margin_top = 432.0
+margin_right = 156.0
+margin_bottom = 459.0
+custom_fonts/font = SubResource( 1 )
+text = "Q'oz"
