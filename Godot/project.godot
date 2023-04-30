@@ -18,6 +18,7 @@ config/icon="res://icon.png"
 
 global_astar="*res://Scenes/Globals/global_astar.gd"
 globals="*res://Scenes/Globals/globals.gd"
+global_music="*res://Scenes/Globals/global_music.tscn"
 
 [display]
 

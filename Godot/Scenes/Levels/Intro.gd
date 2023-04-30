@@ -4,7 +4,12 @@ extends Node2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
+const level_1 = preload("res://Scenes/Levels/BaseLevel.tscn")
 
+
+func change_level():
+	get_parent().add_child(level_1.instance())
+	queue_free()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -99,6 +104,13 @@ func _ready():
 	$Timer.start()
 	yield($Timer, "timeout")
 	$Layers.visible = false
+	
+	$Timer.wait_time = 4
+	$Timer.start()
+	yield($Timer, "timeout")
+	$Audio.stop()
+	global_music.play_music()
+	change_level()
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
