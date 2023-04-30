@@ -8,6 +8,8 @@ func _ready():
 		var id = child.get_name()
 		if ("_" in id) or ("Start" in id):
 			child.connect("rotated", self, "track_rotations")
+			
+	$Timer.start()
 
 
 func track_rotations(undo):
@@ -43,5 +45,10 @@ func _on_Timer_timeout():
 		$Line2D.modulate = Color(0.0, 0.0, 1.0)
 
 	# Draw a line_2D following path
+	var i = 0
 	for point in path:
 		$Line2D.add_point(self.find_node(global_astar.astar_rev_dict[point]).global_position + line_offset)
+
+
+func _on_Board_next_round():
+	$Timer.start()

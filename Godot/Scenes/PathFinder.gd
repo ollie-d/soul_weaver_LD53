@@ -13,6 +13,8 @@ extends Node2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
+signal next_round
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -135,3 +137,5 @@ func _on_Button_pressed():
 		elif global_astar.astar_dict.keys()[path[1]] == "Enemy_Win":
 			# Call defeat
 			print("Oof, you lose")
+			
+	emit_signal("next_round")

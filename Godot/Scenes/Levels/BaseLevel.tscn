@@ -367,5 +367,6 @@ one_shot = true
 position = Vector2( 104, 50 )
 default_color = Color( 1, 1, 1, 1 )
 
+[connection signal="next_round" from="Board" to="." method="_on_Board_next_round"]
 [connection signal="pressed" from="Board/Button" to="Board" method="_on_Button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
