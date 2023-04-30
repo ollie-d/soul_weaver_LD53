@@ -16,6 +16,12 @@ func _ready():
 	
 	globals.current_round = 0
 	globals.turn = "Player"
+	$Board/Button.disabled = false
+	$PlayerName.modulate = Color(1, 1, 1)
+	$PlayerRotations.modulate = Color(1, 1, 1)
+	$EnemyName.modulate = Color(0.5, 0.5, 0.5)
+	$EnemyRotations.modulate = Color(0.5, 0.5, 0.5)
+	
 	next_round()
 	$Timer.start()
 
@@ -33,7 +39,7 @@ func enemy_turn():
 			var hexes = []
 			for child in $Board.get_children():
 				var id = child.get_name()
-				if ("_" in id) or ("Start" in id):
+				if ("_" in id) and (not "_Win" in id):
 					hexes.append(child)
 			var hex = hexes[rng.randi_range(0, len(hexes))]
 			var direction = "left"
@@ -51,6 +57,10 @@ func enemy_turn():
 			else:
 				pass # do nothing
 			$Timer.start()
+			
+			globals.enemy_rotations_remaining -= 1
+			var text = "Rotations left\n{curr}/{max}"
+			$EnemyRotations.text =  text.format({"curr":globals.enemy_rotations_remaining, "max": globals.max_enemy_rotations})
 		
 		$TurnTimer.wait_time = 1.5
 		$TurnTimer.start()
@@ -59,20 +69,34 @@ func enemy_turn():
 
 
 func next_round():
+	var text = "Rotations left\n{curr}/{max}"
+	$EnemyRotations.text =  text.format({"curr":globals.enemy_rotations_remaining, "max": globals.max_enemy_rotations})
+	$PlayerRotations.text =  text.format({"curr":globals.player_rotations_remaining, "max": globals.max_player_rotations})
 	globals.current_round += 1
-	var text = "Round {round}/{max}"
+	text = "Round {round}/{max}"
 	$Label.text = text.format({"round":globals.current_round, "max":globals.max_rounds})
 	globals.turn = "Player"
+	
 
 func finish_turn():
 	# Check what player can do based on turn
 	if globals.turn == "Player":
 		globals.turn = "Enemy"
 		$Board/Button.disabled = true
+		$PlayerName.modulate = Color(0.5, 0.5, 0.5)
+		$PlayerRotations.modulate = Color(0.5, 0.5, 0.5)
+		$EnemyName.modulate = Color(1, 1, 1)
+		$EnemyRotations.modulate = Color(1, 1, 1)
+		globals.player_rotations_remaining = globals.max_player_rotations
 		enemy_turn()
 	elif globals.turn == "Enemy":
 		globals.turn = "Player"
 		$Board/Button.disabled = false
+		$PlayerName.modulate = Color(1, 1, 1)
+		$PlayerRotations.modulate = Color(1, 1, 1)
+		$EnemyName.modulate = Color(0.5, 0.5, 0.5)
+		$EnemyRotations.modulate = Color(0.5, 0.5, 0.5)
+		globals.enemy_rotations_remaining = globals.max_enemy_rotations
 		next_round()
 		emit_signal("next_round")
 	$Timer.start()
@@ -88,6 +112,8 @@ func track_rotations(undo):
 		$PlayerRotations.text =  text.format({"curr":globals.player_rotations_remaining, "max": globals.max_player_rotations})
 	elif globals.turn == "Enemy":
 		globals.enemy_rotations_remaining += value
+		var text = "Rotations left\n{curr}/{max}"
+		$PlayerRotations.text =  text.format({"curr":globals.enemy_rotations_remaining, "max": globals.max_enemy_rotations})
 		
 	# After rotation, execute path finding after a brief delay
 	$Timer.start()

@@ -315,9 +315,9 @@ text = "End Turn"
 [node name="Label" type="Label" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = 159.0
+margin_left = 137.0
 margin_top = 10.0
-margin_right = 383.0
+margin_right = 361.0
 margin_bottom = 82.0
 custom_fonts/font = SubResource( 1 )
 text = "Round 0"
