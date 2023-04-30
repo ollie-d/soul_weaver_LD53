@@ -486,6 +486,20 @@ margin_top = 73.0
 margin_right = 415.0
 margin_bottom = 128.0
 
+[node name="Button3" type="Button" parent="Board"]
+margin_left = 637.0
+margin_top = 62.0
+margin_right = 742.0
+margin_bottom = 130.0
+text = "Move near win"
+
+[node name="Button4" type="Button" parent="Board"]
+margin_left = 291.0
+margin_top = 152.0
+margin_right = 354.0
+margin_bottom = 214.0
+text = "Near loss"
+
 [node name="Label" type="Label" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
@@ -571,6 +585,8 @@ position = Vector2( 570, 477 )
 [connection signal="pressed" from="Board/Button" to="Board" method="_on_Button_pressed"]
 [connection signal="pressed" from="Board/CheckConnect" to="." method="_on_CheckConnect_pressed"]
 [connection signal="pressed" from="Board/Button2" to="." method="_on_Button2_pressed"]
+[connection signal="pressed" from="Board/Button3" to="Board" method="_on_Button3_pressed"]
+[connection signal="pressed" from="Board/Button4" to="Board" method="_on_Button4_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
 [editable path="Board/WeirdButton"]

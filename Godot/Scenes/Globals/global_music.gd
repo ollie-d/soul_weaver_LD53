@@ -19,7 +19,8 @@ func lower_volume():
 
 
 func play_music():
-	$MainTheme.play()
+	if !$MainTheme.playing:
+		$MainTheme.play()
 
 
 func stop_music():
@@ -28,7 +29,8 @@ func stop_music():
 
 
 func play_boss_music():
-	$BossTheme.play()
+	if !$BossTheme.playing:
+		$BossTheme.play()
 
 
 

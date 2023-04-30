@@ -487,6 +487,12 @@ stream = ExtResource( 25 )
 [node name="Timer" type="Timer" parent="Board"]
 one_shot = true
 
+[node name="Button4" type="Button" parent="Board"]
+margin_left = 324.0
+margin_top = 80.0
+margin_right = 365.0
+margin_bottom = 116.0
+
 [node name="Label" type="Label" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
@@ -578,6 +584,7 @@ text = "Win"
 [connection signal="pressed" from="Board/WeirdButton/Button" to="Board" method="_on_Button_pressed"]
 [connection signal="pressed" from="Board/Button" to="Board" method="_on_Button_pressed"]
 [connection signal="pressed" from="Board/CheckConnect" to="." method="_on_CheckConnect_pressed"]
+[connection signal="pressed" from="Board/Button4" to="Board" method="_on_Button4_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 

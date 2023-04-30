@@ -204,3 +204,7 @@ func defeat():
 
 func _on_Button3_pressed():
 	$Soul.position = $R7_03.position
+
+
+func _on_Button4_pressed():
+	$Soul.position = $R7_00.position
