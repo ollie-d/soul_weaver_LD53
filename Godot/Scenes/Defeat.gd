@@ -17,17 +17,18 @@ func _ready():
 
 
 func _on_Button_pressed():
+	globals.update_vars()
 	var level
 	if globals.current_layer == 1:
 		 level = load("res://Scenes/Levels/BaseLevel.tscn")
 	elif globals.current_layer == 2:
-		pass
+		level = load("res://Scenes/Levels/Level02.tscn")
 	elif globals.current_layer == 3:
-		pass
+		level = load("res://Scenes/Levels/Level03.tscn")
 	elif globals.current_layer == 4:
-		pass
+		level = load("res://Scenes/Levels/Level04.tscn")
 	elif globals.current_layer == 5:
-		pass
+		level = load("res://Scenes/Levels/Level05.tscn")
 	get_parent().add_child(level.instance())
 	queue_free()
 	

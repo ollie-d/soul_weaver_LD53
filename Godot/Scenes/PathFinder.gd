@@ -129,6 +129,7 @@ func path_find():
 
 func next_round():
 	var path = path_find()[0]
+	global_astar.path = path
 	
 	# Move soul to the next cell (if not trapped)
 	if len(path) > 1:
@@ -199,3 +200,7 @@ func defeat():
 #		print(i)
 #		for hex in hexes_to_dim:
 #			self.find_node(hex).modulate.a -= 0.1
+
+
+func _on_Button3_pressed():
+	$Soul.position = $R7_03.position

@@ -5,6 +5,7 @@ var astar_dict = {}
 var astar_rev_dict = {}
 var end_point = "Start"
 var player_won = false
+var path = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

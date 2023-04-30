@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Haunted.ogg-131b7f49c0522d339455e5dd191b237f.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sounds/Haunted.ogg"
+dest_files=[ "res://.import/Haunted.ogg-131b7f49c0522d339455e5dd191b237f.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -33,7 +33,7 @@ func update_vars():
 		current_round = 1
 	elif current_layer == 4:
 		enemy_name = "Wevja"
-		max_enemy_rotations = 2
+		max_enemy_rotations = 3
 		enemy_rotations_remaining = max_enemy_rotations
 		current_round = 1
 	elif current_layer == 5:

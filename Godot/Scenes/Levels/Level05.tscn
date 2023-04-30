@@ -1,0 +1,655 @@
+[gd_scene load_steps=37 format=2]
+
+[ext_resource path="res://Scenes/Board.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Tile.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/PathFinder.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Soul.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Fonts/Augusta.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Assets/Sprites/layer_indicator.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sprites/turn_indicator.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Fonts/Deutsch.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://Assets/Fonts/RobotoSlab-VariableFont_wght.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://Scenes/Levels/Level05.gd" type="Script" id=10]
+[ext_resource path="res://Assets/Sprites/line_animation/line_004.png" type="Texture" id=11]
+[ext_resource path="res://Scenes/Layers.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Assets/Sprites/line_animation/line_005.png" type="Texture" id=13]
+[ext_resource path="res://Assets/background.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Sprites/line_animation/line_007.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Sprites/line_animation/line_006.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Sprites/line_animation/line_008.png" type="Texture" id=17]
+[ext_resource path="res://Assets/sidebar.png" type="Texture" id=18]
+[ext_resource path="res://Assets/divider.png" type="Texture" id=19]
+[ext_resource path="res://Assets/divider_no_glow.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Sprites/line_animation/line_001.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Sprites/line_animation/line_000.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Sprites/line_animation/line_002.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Sprites/line_animation/line_003.png" type="Texture" id=24]
+[ext_resource path="res://Assets/Sounds/flute_puff_mondo_reverb.ogg" type="AudioStream" id=25]
+[ext_resource path="res://Scenes/WeirdButton.tscn" type="PackedScene" id=26]
+[ext_resource path="res://Assets/Sounds/outro_voice_line.ogg" type="AudioStream" id=27]
+
+[sub_resource type="DynamicFont" id=6]
+size = 48
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 18
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 18
+font_data = ExtResource( 9 )
+
+[sub_resource type="CanvasItemMaterial" id=4]
+blend_mode = 1
+
+[sub_resource type="AnimatedTexture" id=5]
+flags = 6
+frames = 14
+fps = 15.0
+frame_0/texture = ExtResource( 22 )
+frame_1/texture = ExtResource( 21 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 23 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 24 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 11 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 13 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 16 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 15 )
+frame_7/delay_sec = 0.0
+frame_8/texture = ExtResource( 17 )
+frame_8/delay_sec = 0.0
+frame_9/texture = ExtResource( 15 )
+frame_9/delay_sec = 0.0
+frame_10/texture = ExtResource( 16 )
+frame_10/delay_sec = 0.0
+frame_11/texture = ExtResource( 13 )
+frame_11/delay_sec = 0.0
+frame_12/texture = ExtResource( 24 )
+frame_12/delay_sec = 0.0
+frame_13/texture = ExtResource( 23 )
+frame_13/delay_sec = 0.0
+
+[sub_resource type="DynamicFont" id=8]
+size = 128
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 36
+font_data = ExtResource( 9 )
+
+[node name="Level" type="Node2D"]
+script = ExtResource( 10 )
+
+[node name="BGColor" type="ColorRect" parent="."]
+margin_left = -46.0
+margin_top = -16.0
+margin_right = 836.0
+margin_bottom = 1061.0
+color = Color( 0.321569, 0.321569, 0.321569, 1 )
+
+[node name="BG" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.52549 )
+position = Vector2( 384, 512 )
+texture = ExtResource( 14 )
+
+[node name="SideColor" type="ColorRect" parent="."]
+margin_left = 556.0
+margin_top = -10.0
+margin_right = 1218.0
+margin_bottom = 1043.0
+color = Color( 0.592157, 0.564706, 0.478431, 1 )
+
+[node name="sidebar_right" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.0470588 )
+position = Vector2( 947, 514 )
+texture = ExtResource( 18 )
+
+[node name="NameRect" type="ColorRect" parent="."]
+modulate = Color( 0.607843, 0.6, 0.517647, 0.67451 )
+margin_left = 565.0
+margin_top = 169.0
+margin_right = 775.0
+margin_bottom = 408.0
+
+[node name="divider_right" type="Sprite" parent="."]
+position = Vector2( 570, 546 )
+texture = ExtResource( 19 )
+
+[node name="divider_left" type="Sprite" parent="."]
+position = Vector2( -6, 551 )
+rotation = 3.14159
+texture = ExtResource( 19 )
+
+[node name="divider_top" type="Sprite" parent="."]
+position = Vector2( 1165, 180 )
+rotation = 1.5708
+texture = ExtResource( 20 )
+
+[node name="divider_middle" type="Sprite" parent="."]
+position = Vector2( 1166, 295 )
+rotation = 1.5708
+texture = ExtResource( 20 )
+
+[node name="divider_bottom" type="Sprite" parent="."]
+position = Vector2( 1164, 417 )
+rotation = 1.5708
+texture = ExtResource( 20 )
+
+[node name="Notes" type="Label" parent="."]
+margin_left = 568.0
+margin_top = 3.0
+margin_right = 765.0
+margin_bottom = 55.0
+custom_fonts/font = SubResource( 6 )
+text = "Notes"
+align = 1
+
+[node name="ActualNotes" type="Label" parent="."]
+margin_left = 569.0
+margin_top = 51.0
+margin_right = 765.0
+margin_bottom = 166.0
+custom_fonts/font = SubResource( 7 )
+text = "- you can undo your 
+   rotations manually
+- the path is not always
+   optimal due to a bug"
+
+[node name="Board" parent="." instance=ExtResource( 1 )]
+position = Vector2( -230, 32 )
+script = ExtResource( 3 )
+
+[node name="Start" parent="Board" instance=ExtResource( 2 )]
+position = Vector2( 513, 117 )
+tile_type = "Start"
+
+[node name="R1_00" parent="Board" instance=ExtResource( 2 )]
+position = Vector2( 460, 208 )
+path_30 = false
+path_150 = false
+path_210 = false
+path_270 = false
+tile_type = "Neutral"
+layer = 1
+can_rotate = true
+
+[node name="R1_01" parent="Board" instance=ExtResource( 2 )]
+position = Vector2( 566, 208 )
+path_30 = false
+path_150 = false
+path_210 = false
+path_270 = false
+tile_type = "Neutral"
+layer = 1
+can_rotate = true
+
+[node name="R2_00" parent="Board" instance=ExtResource( 2 )]
+position = Vector2( 407, 299 )
+path_90 = false
+path_150 = false
+path_210 = false
+path_330 = false
+tile_type = "Neutral"
+layer = 2
+can_rotate = true
+
+[node name="R2_01" parent="Board" instance=ExtResource( 2 )]
+position = Vector2( 513, 299 )
+path_150 = false
+path_330 = false
+tile_type = "Neutral"
+layer = 2
+astar_weight = 0.95
+can_rotate = true
+
+[node name="R2_02" parent="Board" instance=ExtResource( 2 )]
+position = Vector2( 619, 299 )
+path_90 = false
+path_150 = false
+path_210 = false
+path_330 = false
+tile_type = "Neutral"
+layer = 2
+can_rotate = true
+
+[node name="R3_00" parent="Board" instance=ExtResource( 2 )]
+position = Vector2( 354, 390 )
+path_90 = false
+path_210 = false
+path_330 = false
+tile_type = "Neutral"
+layer = 3
+can_rotate = true
+
+[node name="R3_01" parent="Board" instance=ExtResource( 2 )]
+position = Vector2( 460, 390 )
+path_90 = false
+path_150 = false
+path_270 = false
+path_330 = false
+tile_type = "Neutral"
+layer = 3
+astar_weight = 0.95
+can_rotate = true
+
+[node name="R3_02" parent="Board" instance=ExtResource( 2 )]
+position = Vector2( 566, 390 )
+path_30 = false
+path_90 = false
+path_210 = false
+path_270 = false
+tile_type = "Neutral"
+layer = 3
+astar_weight = 0.95
+can_rotate = true
+
+[node name="R3_03" parent="Board" instance=ExtResource( 2 )]
+position = Vector2( 672, 390 )
+path_90 = false
+path_210 = false
+path_330 = false
+tile_type = "Neutral"
+layer = 3
+can_rotate = true
+
+[node name="R4_00" parent="Board" instance=ExtResource( 2 )]
+position = Vector2( 301, 481 )
+path_30 = false
+path_90 = false
+path_150 = false
+path_210 = false
+tile_type = "Neutral"
+layer = 4
+can_rotate = true
+
+[node name="R4_01" parent="Board" instance=ExtResource( 2 )]
+position = Vector2( 407, 481 )
+path_150 = false
+path_210 = false
+path_270 = false
+path_330 = false
+tile_type = "Neutral"
+layer = 4
+astar_weight = 0.99
+can_rotate = true
+
+[node name="R4_02" parent="Board" instance=ExtResource( 2 )]
+position = Vector2( 513, 481 )
+path_30 = false
+path_90 = false
+path_150 = false
+path_330 = false
+tile_type = "Neutral"
+layer = 4
+astar_weight = 0.95
+
+[node name="R4_03" parent="Board" instance=ExtResource( 2 )]
+position = Vector2( 619, 481 )
+path_90 = false
+path_210 = false
+tile_type = "Neutral"
+layer = 4
+astar_weight = 0.99
+can_rotate = true
+
+[node name="R4_04" parent="Board" instance=ExtResource( 2 )]
+position = Vector2( 725, 481 )
+path_30 = false
+path_90 = false
+path_150 = false
+path_210 = false
+tile_type = "Neutral"
+layer = 4
+can_rotate = true
+
+[node name="R5_00" parent="Board" instance=ExtResource( 2 )]
+position = Vector2( 354, 572 )
+path_30 = false
+path_150 = false
+path_270 = false
+tile_type = "Neutral"
+layer = 5
+can_rotate = true
+
+[node name="R5_01" parent="Board" instance=ExtResource( 2 )]
+position = Vector2( 460, 572 )
+path_30 = false
+path_150 = false
+path_270 = false
+tile_type = "Neutral"
+layer = 5
+astar_weight = 0.95
+can_rotate = true
+
+[node name="R5_02" parent="Board" instance=ExtResource( 2 )]
+position = Vector2( 566, 572 )
+path_90 = false
+path_210 = false
+path_330 = false
+tile_type = "Neutral"
+layer = 5
+astar_weight = 0.95
+can_rotate = true
+
+[node name="R5_03" parent="Board" instance=ExtResource( 2 )]
+position = Vector2( 672, 572 )
+path_90 = false
+path_210 = false
+path_330 = false
+tile_type = "Neutral"
+layer = 5
+can_rotate = true
+
+[node name="R6_00" parent="Board" instance=ExtResource( 2 )]
+position = Vector2( 301, 663 )
+path_90 = false
+path_150 = false
+tile_type = "Neutral"
+layer = 6
+
+[node name="R6_01" parent="Board" instance=ExtResource( 2 )]
+position = Vector2( 407, 663 )
+path_150 = false
+path_210 = false
+path_270 = false
+tile_type = "Neutral"
+layer = 6
+astar_weight = 0.99
+can_rotate = true
+
+[node name="R6_02" parent="Board" instance=ExtResource( 2 )]
+position = Vector2( 513, 663 )
+path_30 = false
+path_90 = false
+path_150 = false
+path_210 = false
+path_270 = false
+path_330 = false
+tile_type = "Neutral"
+layer = 6
+astar_weight = 0.95
+can_rotate = true
+
+[node name="R6_03" parent="Board" instance=ExtResource( 2 )]
+position = Vector2( 619, 663 )
+path_210 = false
+path_270 = false
+path_330 = false
+tile_type = "Neutral"
+layer = 6
+astar_weight = 0.99
+can_rotate = true
+
+[node name="R6_04" parent="Board" instance=ExtResource( 2 )]
+position = Vector2( 725, 663 )
+path_90 = false
+path_150 = false
+path_210 = false
+path_330 = false
+tile_type = "Neutral"
+layer = 6
+can_rotate = true
+
+[node name="R7_00" parent="Board" instance=ExtResource( 2 )]
+position = Vector2( 354, 754 )
+path_30 = false
+path_90 = false
+tile_type = "Neutral"
+layer = 7
+can_rotate = true
+
+[node name="R7_01" parent="Board" instance=ExtResource( 2 )]
+position = Vector2( 460, 754 )
+path_30 = false
+path_270 = false
+path_330 = false
+tile_type = "Neutral"
+layer = 7
+astar_weight = 0.95
+can_rotate = true
+
+[node name="R7_02" parent="Board" instance=ExtResource( 2 )]
+position = Vector2( 566, 754 )
+path_30 = false
+path_210 = false
+path_270 = false
+tile_type = "Neutral"
+layer = 7
+astar_weight = 0.95
+can_rotate = true
+
+[node name="R7_03" parent="Board" instance=ExtResource( 2 )]
+position = Vector2( 672, 754 )
+path_30 = false
+path_150 = false
+path_270 = false
+tile_type = "Neutral"
+layer = 7
+can_rotate = true
+
+[node name="Enemy_Win" parent="Board" instance=ExtResource( 2 )]
+modulate = Color( 1, 0.266667, 0.294118, 1 )
+position = Vector2( 407, 845 )
+tile_type = "Enemy_End"
+layer = 8
+astar_weight = 0.0
+
+[node name="Player_Win" parent="Board" instance=ExtResource( 2 )]
+modulate = Color( 0.364706, 1, 1, 1 )
+position = Vector2( 619, 845 )
+tile_type = "Player_End"
+layer = 8
+astar_weight = 0.0
+
+[node name="Soul" parent="Board" instance=ExtResource( 4 )]
+position = Vector2( 513, 117 )
+scale = Vector2( 0.4, 0.4 )
+
+[node name="Button3" type="Button" parent="Board"]
+margin_left = 255.0
+margin_top = 155.0
+margin_right = 363.0
+margin_bottom = 230.0
+text = "Move Near End"
+
+[node name="WeirdButton" parent="Board" instance=ExtResource( 26 )]
+position = Vector2( 417, 909 )
+
+[node name="Label" parent="Board/WeirdButton" index="1"]
+text = "End Turn"
+
+[node name="Button" type="Button" parent="Board"]
+visible = false
+margin_left = 429.0
+margin_top = 924.0
+margin_right = 580.0
+margin_bottom = 960.0
+text = "End Turn"
+
+[node name="Node1" type="TextEdit" parent="Board"]
+visible = false
+margin_left = 263.0
+margin_top = 73.0
+margin_right = 335.0
+margin_bottom = 113.0
+text = "R4_02"
+
+[node name="Node2" type="TextEdit" parent="Board"]
+visible = false
+margin_left = 262.0
+margin_top = 116.0
+margin_right = 334.0
+margin_bottom = 156.0
+text = "R5_02"
+
+[node name="CheckConnect" type="Button" parent="Board"]
+visible = false
+margin_left = 339.0
+margin_top = 74.0
+margin_right = 395.0
+margin_bottom = 153.0
+text = "Check"
+
+[node name="Sound" type="AudioStreamPlayer" parent="Board"]
+stream = ExtResource( 25 )
+
+[node name="Timer" type="Timer" parent="Board"]
+one_shot = true
+
+[node name="Button2" type="Button" parent="Board"]
+margin_left = 292.0
+margin_top = 81.0
+margin_right = 395.0
+margin_bottom = 140.0
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 2.0
+margin_top = 10.0
+margin_right = 565.0
+margin_bottom = 82.0
+custom_fonts/font = SubResource( 1 )
+text = "Round 0/30"
+align = 1
+
+[node name="Turn" type="Sprite" parent="."]
+visible = false
+position = Vector2( 669, 512 )
+texture = ExtResource( 7 )
+
+[node name="Layer" type="Sprite" parent="."]
+visible = false
+position = Vector2( 680, 689 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 6 )
+
+[node name="PlayerName" type="Label" parent="."]
+margin_left = 556.0
+margin_top = 188.0
+margin_right = 769.0
+margin_bottom = 223.0
+custom_fonts/font = SubResource( 2 )
+text = "You"
+align = 1
+
+[node name="EnemyName" type="Label" parent="."]
+margin_left = 555.0
+margin_top = 300.0
+margin_right = 767.0
+margin_bottom = 335.0
+custom_fonts/font = SubResource( 2 )
+text = "Harold"
+align = 1
+
+[node name="PlayerRotations" type="Label" parent="."]
+margin_left = 558.0
+margin_top = 230.0
+margin_right = 768.0
+margin_bottom = 281.0
+custom_fonts/font = SubResource( 3 )
+text = "Rotations left
+ 3/3"
+align = 1
+
+[node name="EnemyRotations" type="Label" parent="."]
+margin_left = 558.0
+margin_top = 343.0
+margin_right = 766.0
+margin_bottom = 394.0
+custom_fonts/font = SubResource( 3 )
+text = "Rotations left
+ 1/1"
+align = 1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="Line2D" type="Line2D" parent="."]
+material = SubResource( 4 )
+position = Vector2( 104, 50 )
+default_color = Color( 1, 1, 1, 1 )
+texture = SubResource( 5 )
+texture_mode = 1
+
+[node name="TurnTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Node2D" parent="." instance=ExtResource( 12 )]
+position = Vector2( 570, 477 )
+
+[node name="FadeTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="Fader" type="ColorRect" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+margin_left = -50.0
+margin_top = -55.0
+margin_right = 1216.0
+margin_bottom = 1261.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Outro" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 27 )
+
+[node name="ty" type="Label" parent="."]
+visible = false
+margin_left = 3.0
+margin_top = 184.0
+margin_right = 766.0
+margin_bottom = 292.0
+custom_fonts/font = SubResource( 8 )
+text = "Thank you"
+align = 1
+
+[node name="info" type="Label" parent="."]
+visible = false
+margin_left = 1.0
+margin_top = 344.0
+margin_right = 769.0
+margin_bottom = 1005.0
+custom_fonts/font = SubResource( 9 )
+text = "Made alone and from scratch in 48 hours for Ludum Dare 53: Delivery (Compo)
+
+Engine: Godot 3.5
+All audio was recorded during the jam with instruments I own.
+Processed in Ableton and Audacity.
+Gimp and photography were used for visuals.
+
+
+
+-Ollie
+
+"
+align = 1
+autowrap = true
+
+[connection signal="next_round" from="." to="Board" method="_on_Level_next_round"]
+[connection signal="defeat" from="Board" to="." method="defeat"]
+[connection signal="next_turn" from="Board" to="." method="_on_Board_next_turn"]
+[connection signal="victory" from="Board" to="." method="victory"]
+[connection signal="pressed" from="Board/Button3" to="Board" method="_on_Button3_pressed"]
+[connection signal="pressed" from="Board/WeirdButton/Button" to="Board" method="_on_Button_pressed"]
+[connection signal="pressed" from="Board/Button" to="Board" method="_on_Button_pressed"]
+[connection signal="pressed" from="Board/CheckConnect" to="." method="_on_CheckConnect_pressed"]
+[connection signal="pressed" from="Board/Button2" to="." method="_on_Button2_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="FadeTimer" to="." method="_on_FadeTimer_timeout"]
+
+[editable path="Board/WeirdButton"]

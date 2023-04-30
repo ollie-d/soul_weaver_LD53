@@ -19,6 +19,14 @@ func _ready():
 		if ("_" in id) or ("Start" in id):
 			child.connect("rotated", self, "track_rotations")
 	
+	# Update enemy name and counters
+	$EnemyName.text = globals.enemy_name
+	var text = "Rotations left\n{curr}/{max}"
+	$EnemyRotations.text =  text.format({"curr":globals.enemy_rotations_remaining, "max": globals.max_enemy_rotations})
+	text = "Rotations left\n{curr}/{max}"
+	$PlayerRotations.text =  text.format({"curr":globals.player_rotations_remaining, "max": globals.max_player_rotations})
+	
+	
 	globals.current_round = 0
 	globals.turn = "Player"
 	#$Board/Button.disabled = false
@@ -195,3 +203,7 @@ func _on_CheckConnect_pressed():
 
 func _on_Button_pressed():
 	pass # Replace with function body.
+
+
+func _on_Button2_pressed():
+	victory()

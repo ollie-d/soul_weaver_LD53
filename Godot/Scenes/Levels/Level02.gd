@@ -13,22 +13,28 @@ signal next_round
 
 func _ready():
 	# Make sure soul is at the top
-	globals.update_vars()
 	$Board/Soul.z_index = 100
 	for child in $Board.get_children():
 		var id = child.get_name()
 		if ("_" in id) or ("Start" in id):
 			child.connect("rotated", self, "track_rotations")
 	
+	# Update enemy name and counters
+	$EnemyName.text = globals.enemy_name
+	var text = "Rotations left\n{curr}/{max}"
+	$EnemyRotations.text =  text.format({"curr":globals.enemy_rotations_remaining, "max": globals.max_enemy_rotations})
+	text = "Rotations left\n{curr}/{max}"
+	$PlayerRotations.text =  text.format({"curr":globals.player_rotations_remaining, "max": globals.max_player_rotations})
+	
+	
 	globals.current_round = 0
 	globals.turn = "Player"
-	$Board/Button.disabled = false
+	#$Board/Button.disabled = false
+	$Board/WeirdButton.disabled = false
 	$PlayerName.modulate = Color(1, 1, 1)
 	$PlayerRotations.modulate = Color(1, 1, 1)
 	$EnemyName.modulate = Color(0.5, 0.5, 0.5)
 	$EnemyRotations.modulate = Color(0.5, 0.5, 0.5)
-	
-	$EnemyName.text = globals.enemy_name
 	
 	next_round()
 	$Timer.start()
@@ -41,7 +47,7 @@ func enemy_turn():
 	if globals.turn == "Enemy":
 		# This is the enemy's AI
 		
-		# Harold will pick a random tile and rotate it then end his turn
+		# Ta will pick a random tile and rotate it then end his turn
 		for turn in range(globals.max_enemy_rotations):
 			print(turn)
 			var hexes = []
@@ -100,7 +106,8 @@ func finish_turn():
 	# Check what player can do based on turn
 	if globals.turn == "Player":
 		globals.turn = "Enemy"
-		$Board/Button.disabled = true
+		#$Board/Button.disabled = true
+		$Board/WeirdButton.disabled = true
 		$PlayerName.modulate = Color(0.5, 0.5, 0.5)
 		$PlayerRotations.modulate = Color(0.5, 0.5, 0.5)
 		$EnemyName.modulate = Color(1, 1, 1)
@@ -109,7 +116,8 @@ func finish_turn():
 		enemy_turn()
 	elif globals.turn == "Enemy":
 		globals.turn = "Player"
-		$Board/Button.disabled = false
+		#$Board/Button.disabled = false
+		$Board/WeirdButton.disabled = false
 		$PlayerName.modulate = Color(1, 1, 1)
 		$PlayerRotations.modulate = Color(1, 1, 1)
 		$EnemyName.modulate = Color(0.5, 0.5, 0.5)
@@ -184,3 +192,14 @@ func defeat():
 
 
 
+
+
+func _on_CheckConnect_pressed():
+	print("pressed")
+	var point0 = global_astar.astar_dict[$Board/Node1.text]
+	var point1 = global_astar.astar_dict[$Board/Node2.text]
+	print(global_astar.astar.are_points_connected(point0, point1, false))
+
+
+func _on_Button_pressed():
+	victory()

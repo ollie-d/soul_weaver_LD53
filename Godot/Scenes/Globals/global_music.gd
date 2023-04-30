@@ -14,6 +14,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+func lower_volume():
+	$BossTheme.volume_db -= 5
+
 
 func play_music():
 	$MainTheme.play()
@@ -21,4 +24,11 @@ func play_music():
 
 func stop_music():
 	$MainTheme.stop()
-	$MainTheme.seek(0)
+	$BossTheme.stop()
+
+
+func play_boss_music():
+	$BossTheme.play()
+
+
+
